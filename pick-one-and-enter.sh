@@ -69,20 +69,14 @@ run() {
     $emu
 }
 
-download() {
-    $downld
-}
-
 PS1="\s-\v demo test$pext>> "
 
 export PS1
 export emu
-export downld
 export -f run
 export -f pass
 export -f fail
 export -f commit
-export -f download
 
 if [ -n "$pick" ]; then
     x="$pick"
@@ -107,8 +101,6 @@ cp -vn mapper-0.801.map "$x/mapper-0.82.map" || exit 1
 cp -vn mapper-0.801.map "$x/mapper-0.82.1.map" || exit 1
 cp -vn mapper-0.801.map "$x/mapper-0.82.2.map" || exit 1
 cp -vn mapper-SVN.map "$x/mapper-SVN.map" || exit 1
-
-downld="`pwd`/demo-download.pl"
 
 (cd "$x" && echo "I entered the directory by running your shell again. Type 'exit' to exit out of it." && bash) || exit 1
 
