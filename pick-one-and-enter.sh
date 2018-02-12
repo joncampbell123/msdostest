@@ -87,12 +87,7 @@ fi
 if [ "$x" == "" ]; then echo "nothing picked"; exit 1; fi
 echo "I picked: $x"
 
-y=`echo "$x" | grep -E '\/(19[8][0-9]|199[0-2])\/'`
-if [ -n "$y" ]; then
-    cp -v dosbox-386.conf dosbox-template.conf || exit 1
-else
-    cp -v dosbox-pentium.conf dosbox-template.conf || exit 1
-fi
+cp -v dosbox-386.conf dosbox-template.conf || exit 1
 
 cp -vn dosbox-template.conf "$x/dosbox.conf" || exit 1
 cp -vn mapper-0.801.map "$x/mapper-0.801.map" || exit 1
