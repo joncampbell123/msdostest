@@ -33,7 +33,7 @@ while (my $path = <X>) {
     );
 
     # skip unless it has an EXE or COM file
-    $x=`cd '$path' && ls *.exe *.EXE *.com *.COM 2>/dev/null | head -n 1`; chomp $x;
+    $x=`cd '$path' && ls __BASE__ __base__ 2>/dev/null | head -n 1`; chomp $x;
     next if $x eq "";
 
     print "$path\n";
