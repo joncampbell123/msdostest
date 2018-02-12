@@ -69,6 +69,11 @@ run() {
     $emu
 }
 
+genmd5() {
+    md5sum -b */*.{EXE,exe,COM,com} 2>/dev/null >__MD5__
+    git add __MD5__
+}
+
 PS1="\s-\v demo test$pext>> "
 
 export PS1
@@ -77,6 +82,7 @@ export -f run
 export -f pass
 export -f fail
 export -f commit
+export -f genmd5
 
 if [ -n "$pick" ]; then
     x="$pick"
