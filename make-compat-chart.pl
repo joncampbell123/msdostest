@@ -71,6 +71,8 @@ while ($line = <S>) {
     $line =~ s/^\.\///;
     $disp_line = $line;
 
+    my $download = undef;
+
     my $pass_dosbox_x = undef;
     my $pass_dosbox_x_rev = undef;
     my $pass_dosbox_x_url = undef;
@@ -80,6 +82,17 @@ while ($line = <S>) {
     die unless !defined($pass_dosbox_x_url);
     die unless !defined($pass_dosbox_x_rev);
     die unless !defined($pass_dosbox_x_rev_file);
+
+    if ( -f "$line/__DOWNLOAD__" ) {
+        open(R,"<","$line/__DOWNLOAD__") || die;
+        $download = "";
+        while (my $line = <R>) {
+            chomp $line;
+            next if $line eq "";
+            $download .= $line."\n";
+        }
+        close(R);
+    }
 
     if ( -f "$line/__PASS__" ) {
         $pass_dosbox_x = "PASS";
@@ -236,6 +249,14 @@ while ($line = <S>) {
         if (defined($notes_dosbox_svn) && $notes_dosbox_svn ne "") {
             $more .= "<br>";
             $more .= "DOSBox-SVN NOTES: <pre>$notes_dosbox_svn</pre>";
+        }
+    }
+
+    if (defined($download) && $download ne "") {
+        my @a = split(/\n+/,$download);
+        for ($i=0;$i < @a;$i++) {
+            $url = $a[$i];
+            $more .= "Download link: <a target=\"_blank\" href=\"$url\">$url</a><br>";
         }
     }
 
