@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>MS-DOS application compat testing chart</title>
+<style>
+.passfail_PASS { background-color: #7FFF7F; text-align: center; vertical-align: top; }
+.passfail_FAIL { background-color: #FF7F7F; text-align: center; vertical-align: top; }
+.passfail_NA { background-color: #DFDFDF; text-align: center; vertical-align: top; }
+.testing_header { background-color: #BFBFBF; }
+td pre { white-space: pre-line; word-break: normal; word-wrap: normal; }
+td a { color: black; }
+pre { padding: 0px; margin: 0px; }
+</style>
+</head>
+<body>
+DOSBox MS-DOS application compat testing chart<br>
+MS-DOS testing repository: <a target="_blank" href="https://github.com/joncampbell123/msdostest">https://github.com/joncampbell123/msdostest</a><br>
+<br>
+DOSBox-X refers to the <a target="_blank" href="http://dosbox-x.com/">DOSBox-X project</a><br>
+DOSBox-SVN refers to the <a target="_blank" href="https://www.dosbox.com/">DOSBox project</a><br>
+<br>
+Rules regarding PASS or FAIL:<br>
+- If a game crashes, faults, or shows behavior that suggests a problem, that is a FAIL.<br>
+- Known faulty behavior in the game itself doesn't count as failure. Future development may offer off-by-default hacks or workarounds in the emulator for the problem.<br>
+- Known faulty behavior that occurs on real hardware doesn't count as failure, because it means DOSBox is emulating real hardware accurately and the game is at fault.<br>
+- Issues that are DOSBox-SVN's fault, that the DOSBox SVN developers have expressed an unwillingness to fix or accept patches to fix, do not count as failure.<br>
+<br>
+Common problems with DOSBox SVN so far:<br>
+- Lack of support for &quot;goldplay&quot; Sound Blaster playback. Audio is rendered &quot;muffled&quot; in DOSBox SVN.<br>
+- LPT DAC output doesn't work. However code explicitly written for the Disney Sound Source works.<br>
+- PC speaker emulation on/off and frequency changes are limited to 1ms precision. This affects some games as well as old Apogee titles like Duke Nukum.<br>
+- Some games rely on INT 16h AH=1 undefined behavior regarding ZF flag (standard only describes CF flag), which so far has been confirmed on at least one 386 system and may occur in other old systems.<br>
+<br>
+Common problems to both DOSBox-X and DOSBox-SVN:<br>
+- Having UMB or EMS enabled can cause crashiness in some games.<br>
+- Some games require XMS to be enabled, will call to a NULL pointer otherwise.<br>
+- Some games will crash or malfunction if loaded too low (below 64KB) in memory. Try loadfix or the minimum mcb segment option.<br>
+<br>
+Problems that do NOT count as failures against DOSBox SVN, because they are bugs in the game itself:<br>
+- Audio halting or interrupt problems with GUS or SB related to a failure to unmask the IRQ (gamecoder laziness, NOT SVN's fault).<br>
+- Hangs related to undefined or reserved bits in VGA emulation that the game really ought to ignore.<br>
+<br>
+<table cellpadding=0 cellspacing=0>
+<thead class="testing_header">
+<tr>
+<td style="min-width: 6em; text-align: center;">DOSBox-X</td><td style="min-width: 6em; text-align: center;">DOSBox-SVN</td><td>Demo</td></tr>
+</thead>
+<tbody>
+<tr><td class="passfail_PASS"><a target="_blank" href="https://github.com/joncampbell123/dosbox-x/commit/12c1059466e10b49b2ccc8f31e0656eda2f87e6b">PASS</a></td><td class="passfail_PASS"><a target="_blank" href="https://sourceforge.net/p/dosbox/code-0/4076/">PASS</a></td><td>jill-of-the-jungle-v1.2-shareware<br></td></tr>
+</tbody>
+</table>
+</body>
+</html>
