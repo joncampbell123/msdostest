@@ -10,6 +10,7 @@ print H "<style>\n";
 print H ".passfail_PASS { background-color: #7FFF7F; text-align: center; vertical-align: top; }\n";
 print H ".passfail_FAIL { background-color: #FF7F7F; text-align: center; vertical-align: top; }\n";
 print H ".passfail_NA { background-color: #DFDFDF; text-align: center; vertical-align: top; }\n";
+print H ".passfail_X { background-color: #5F5F5F; text-align: center; vertical-align: top; color: #3F3F3F; }\n";
 print H ".testing_header { background-color: #BFBFBF; }\n";
 print H "td pre { white-space: pre-line; word-break: normal; word-wrap: normal; }\n";
 print H "td a { color: black; }\n";
@@ -238,6 +239,9 @@ while ($line = <S>) {
         else {
             print H "<td class=\"passfail_$pass_dosbox_svn\">$pass_dosbox_svn</td>";
         }
+    }
+    elsif ($line =~ m/^nec-pc98\//) {
+        print H "<td class=\"passfail_X\">X</td>";
     }
     else {
         print H "<td class=\"passfail_NA\">---</td>";
