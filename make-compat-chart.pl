@@ -71,6 +71,7 @@ while ($line = <S>) {
     $line =~ s/^\.\///;
     $disp_line = $line;
 
+    my $md5 = undef;
     my $download = undef;
 
     my $pass_dosbox_x = undef;
@@ -82,6 +83,17 @@ while ($line = <S>) {
     die unless !defined($pass_dosbox_x_url);
     die unless !defined($pass_dosbox_x_rev);
     die unless !defined($pass_dosbox_x_rev_file);
+
+    if ( -f "$line/__MD5__" ) {
+        open(R,"<","$line/__MD5__") || die;
+        $md5 = "";
+        while (my $line = <R>) {
+            chomp $line;
+            next if $line eq "";
+            $md5 .= $line."\n";
+        }
+        close(R);
+    }
 
     if ( -f "$line/__DOWNLOAD__" ) {
         open(R,"<","$line/__DOWNLOAD__") || die;
@@ -252,8 +264,20 @@ while ($line = <S>) {
         }
     }
 
+    if (defined($md5) && $md5 ne "") {
+        my @a = split(/\n+/,$md5);
+        $more .= "<pre>";
+        $more .= "<br>" if @a > 0;
+        for ($i=0;$i < @a;$i++) {
+            $hash = $a[$i];
+            $more .= "MD5 hash: $hash\n";
+        }
+        $more .= "</pre>";
+    }
+
     if (defined($download) && $download ne "") {
         my @a = split(/\n+/,$download);
+        $more .= "<br>" if @a > 0;
         for ($i=0;$i < @a;$i++) {
             $url = $a[$i];
             $more .= "Download link: <a target=\"_blank\" href=\"$url\">$url</a><br>";
