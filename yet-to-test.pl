@@ -25,6 +25,9 @@ while (my $path = <X>) {
     next if $path =~ m/\'/;
     next if ($skip ne '' && (substr($path,0,length($skip)) eq $skip));
 
+    # DOSBox-SVN does not support PC-98 games
+    next if $path =~ m/^\.\/nec-pc98\// && $suffix eq ".svn";
+
     # skip if it already has __PASS__ or __FAIL__
     # 2018/02/09: we now require PASS/FAIL to indicate the commit!
     next if (
