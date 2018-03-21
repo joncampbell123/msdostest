@@ -1,2 +1,0 @@
-Why the demo failed the test:
-- Game makes unknown calls into NEC ANSI driver? (INT DCh) and is unable to obtain CG font bitmaps, renders gibberish on top of the game field
