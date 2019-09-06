@@ -30,6 +30,9 @@ exit 0 if $url eq "";
 if ($url =~ m/\.zip$/i) {
     $archivetype = "zip";
 }
+elsif ($url =~ m/\.rar$/i) {
+    $archivetype = "rar";
+}
 
 close(URL);
 
@@ -50,6 +53,14 @@ if ($archivetype eq "zip") { # .zip, or .ZIP, or whatever
     @args = ("unzip");
     push(@args,"-j") if $no_subdirs == 1;
     push(@args,"-o","_download_.zip"); # use InfoZip
+    $x = system(@args);
+    die unless $x == 0;
+}
+elsif ($archivetype eq "rar") { # .rar, or .RAR, or whatever
+    @args = ("unrar");
+    push(@args,"e") if $no_subdirs == 1;
+    push(@args,"x") if $no_subdirs == 0;
+    push(@args,"_download_.rar"); # use InfoZip
     $x = system(@args);
     die unless $x == 0;
 }
