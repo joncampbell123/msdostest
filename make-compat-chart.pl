@@ -685,6 +685,7 @@ while ($line = <S>) {
                 }
                 else {
                     $vcard = $value;
+                    $vcard = "vga" if $vcard eq "vgaonly";
                 }
             }
         }
