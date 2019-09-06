@@ -539,6 +539,9 @@ while ($line = <S>) {
             print H "<td class=\"passfail_$pass_dosbox_svn\">$pass_dosbox_svn</td>";
         }
     }
+    elsif ($pc98) { # SVN cannot run PC-98 games
+        print H "<td class=\"passfail_NA\">N/A</td>";
+    }
     else {
         print H "<td class=\"passfail_NA\">---</td>";
     }
