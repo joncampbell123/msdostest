@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
 my $url = undef;
+my $archivetype = undef;
 
 open(URL,"__DOWNLOAD__") || exit 0;
 foreach my $line (<URL>) {
@@ -16,8 +17,16 @@ foreach my $line (<URL>) {
     if ($name eq "url") {
         $url = $value;
     }
+    elsif ($name eq "archivetype") {
+        $archivetype = $value;
+    }
 }
 exit 0 if $url eq "";
+
+if ($url =~ m/\.zip$/i) {
+    $archivetype = "zip";
+}
+
 close(URL);
 
 print "Final URL: $url\n";
@@ -27,13 +36,13 @@ $x = <STDIN>;
 chomp $x;
 die unless $x eq "";
 
-my @args = ("wget","-O","_download_.zip","--continue","--",$url);
+my @args = ("wget","-O","_download_.$archivetype","--continue","--",$url);
 
 $x = system(@args);
 die unless $x == 0;
 
 # unpack the ZIP archive
-if ($relpath =~ m/\.zip$/i) { # .zip, or .ZIP, or whatever
+if ($archivetype eq "zip") { # .zip, or .ZIP, or whatever
     @args = ("unzip","-o","_download_.zip"); # use InfoZip
     $x = system(@args);
     die unless $x == 0;
