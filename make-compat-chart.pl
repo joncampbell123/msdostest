@@ -54,6 +54,7 @@ sub escape_shell($) {
 }
 
 my $totalcount = 0;
+my $tot_pc98 = 0;
 my $tot_x = 0,$pass_x = 0;
 my $tot_svn = 0,$pass_svn = 0;
 my $tot_xdos = 0,$pass_xdos = 0;
@@ -477,6 +478,10 @@ while ($line = <S>) {
         }
     }
 
+    if ($pc98) {
+        $tot_pc98++;
+    }
+
     my $notes_dosbox_qemu = undef;
     if ( -f "$line/__NOTES_QEMU__" ) {
         my $nline="",$pline,$res="",$ncount=0;
@@ -790,12 +795,12 @@ sub makestat($$$) {
 }
 
 print H "<tr>\n";
-print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount,$tot_x,$pass_x)."</td>";
-print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount,$tot_svn,$pass_svn)."</td>";
-print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount,$tot_xdos,$pass_xdos)."</td>";
-print H "<td style=\"min-width: 8em; text-align: center;\">".makestat($totalcount,$tot_svndos,$pass_svndos)."</td>";
-print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount,$tot_bochs,$pass_bochs)."</td>";
-print H "<td style=\"min-width: 4em; text-align: center;\">".makestat($totalcount,$tot_qemu,$pass_qemu)."</td>";
+print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount          ,$tot_x,$pass_x)."</td>";
+print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount-$tot_pc98,$tot_svn,$pass_svn)."</td>";
+print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount          ,$tot_xdos,$pass_xdos)."</td>";
+print H "<td style=\"min-width: 8em; text-align: center;\">".makestat($totalcount-$tot_pc98,$tot_svndos,$pass_svndos)."</td>";
+print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount-$tot_pc98,$tot_bochs,$pass_bochs)."</td>";
+print H "<td style=\"min-width: 4em; text-align: center;\">".makestat($totalcount-$tot_pc98,$tot_qemu,$pass_qemu)."</td>";
 print H "<td>TEST RESULTS</td>";
 print H "</tr>\n";
 
