@@ -71,15 +71,6 @@ while ($line = <S>) {
 
     next unless -d $line;
 
-    # skip Amiga demos, we can't run them
-    next if $line =~ m/\/amiga\/(demo|in64|in40|in4k)\//;
-
-    # no MOD music executables
-    next if $line =~ m/\/m4ch\//;
-
-    # no graphics
-    next if $line =~ m/\/grfx\//;
-
     # some are symlinks
     $symlink_to = undef;
     if ( -l $line ) {
@@ -89,7 +80,6 @@ while ($line = <S>) {
 
     $line =~ s/^\.\///;
     $disp_line = $line;
-    next unless $disp_line =~ s/^unpacked\///;
 
     my $pass_dosbox_x = undef;
     my $pass_dosbox_x_rev = undef;
