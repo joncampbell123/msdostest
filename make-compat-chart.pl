@@ -20,7 +20,6 @@ print H "</head>\n";
 print H "<body>\n";
 
 print H "DOSBox game compat testing chart<br>\n";
-print H "Ref: <a href=\"ftp://ftp.scene.org\">ftp://ftp.scene.org</a><br>\n";
 print H "DOS game testing repository: <a target=\"_blank\" href=\"https://github.com/joncampbell123/msdostest\">https://github.com/joncampbell123/msdostest</a><br>\n";
 
 print H "<br>\n";
