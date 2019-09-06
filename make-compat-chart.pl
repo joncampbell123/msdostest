@@ -566,6 +566,9 @@ while ($line = <S>) {
             print H "<td class=\"passfail_$pass_dosbox_svndos\">$pass_dosbox_svndos</td>";
         }
     }
+    elsif ($pc98) { # SVN cannot run PC-98 games
+        print H "<td class=\"passfail_NA\">N/A</td>";
+    }
     else {
         print H "<td class=\"passfail_NA\">---</td>";
     }
@@ -578,6 +581,9 @@ while ($line = <S>) {
             print H "<td class=\"passfail_$pass_dosbox_svnbochs\">$pass_dosbox_svnbochs</td>";
         }
     }
+    elsif ($pc98) { # Bochs cannot run PC-98 games
+        print H "<td class=\"passfail_NA\">N/A</td>";
+    }
     else {
         print H "<td class=\"passfail_NA\">---</td>";
     }
@@ -589,6 +595,9 @@ while ($line = <S>) {
         else {
             print H "<td class=\"passfail_$pass_dosbox_qemu\">$pass_dosbox_qemu</td>";
         }
+    }
+    elsif ($pc98) { # QEMU cannot run PC-98 games (though there is a patch)
+        print H "<td class=\"passfail_NA\">N/A</td>";
     }
     else {
         print H "<td class=\"passfail_NA\">---</td>";
