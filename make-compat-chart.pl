@@ -665,6 +665,7 @@ while ($line = <S>) {
     }
 
     my $url = undef;
+    my $vcard = "svga";
     my $pc98 = 0;
 
     if (open(URL,"$line/dosbox.conf")) {
@@ -681,6 +682,9 @@ while ($line = <S>) {
             if ($name eq "machine") {
                 if ($value eq "pc98") {
                     $pc98 = 1;
+                }
+                else {
+                    $vcard = $value;
                 }
             }
         }
@@ -704,10 +708,14 @@ while ($line = <S>) {
     }
 
     if ($pc98) {
-        $disp_line .= " <sup style=\"color: rgb(0,63,0); font-size: 75%;\">(NEC PC-98)</sup>";
+        $disp_line .= " <sup style=\"color: rgb(0,63,0); font-size: 60%;\">NEC PC-98</sup>";
     }
     else {
-        $disp_line .= " <sup style=\"color: rgb(0,0,63); font-size: 75%;\">(IBM PC/XT/AT)</sup>";
+        $disp_line .= " <sup style=\"color: rgb(0,0,63); font-size: 60%;\">IBM PC/XT/AT";
+        if ($vcard ne "") {
+            $disp_line .= " ".uc($vcard);
+        }
+        $disp_line .= "</sup>";
     }
 
     if ($url ne "") {
