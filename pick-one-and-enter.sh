@@ -191,6 +191,12 @@ else
     cp -vn dosbox-template.conf "$x/dosbox.conf" || exit 1
 fi
 
+# for PC-98 games: FONT.ROM, MIDI and 86k card drum samples from *private* testing setup
+cp -vn /mnt/main/emu/pc98a/FONT.ROM "$x/" 2>/dev/null
+cp -vn /mnt/main/emu/pc98a/CM32L_*.ROM "$x/" 2>/dev/null
+cp -vn /mnt/main/emu/pc98a/MT32_*.ROM "$x/" 2>/dev/null
+cp -vn /mnt/main/emu/pc98a/2608_*.wav "$x/" 2>/dev/null
+
 testpick="$x"
 testroot="`pwd`"
 downld="$testroot/demo-download.pl"
