@@ -1,33 +1,21 @@
 #!/usr/bin/perl
-my $dir = `pwd`; chomp $dir;
-my @dirs = split(/\//,$dir);
 
-# scan upwards until "ftp.scene.org"
-for ($i=@dirs-1;$i >= 0;$i--) {
-    $elem = $dirs[$i];
-    last if $elem eq "ftp.scene.org";
+my $url = undef;
+
+open(URL,"__DOWNLOAD__") || exit 0;
+foreach my $line (<URL>) {
+    my $name,$value,$i;
+    chomp $line;
+
+    $i = index($line,'=');
+    next if $i <= 0;
+
+    $name = substr($line,0,$i);
+    $value = substr($line,$i+1);
 }
-die unless $i >= 0;
-$i++;
+exit 0 if $url eq "";
+close(URL);
 
-my $relpath;
-while ($i < @dirs) {
-    $elem = $dirs[$i];
-    $relpath .= "/" . $elem;
-    $i++;
-}
-
-$relpath =~ s/\/pub\//\//;
-
-# Fix your US mirror! Use the NL one in the meantime
-$baseurl = "http://files.scene.org/get:nl-http";
-
-# Uncomment this when they fix their US mirror
-#$baseurl = "http://files.scene.org/get";
-
-$url = $baseurl . $relpath;
-
-print "Relative path: $relpath\n";
 print "Final URL: $url\n";
 print "Hit ENTER to proceed.\n";
 
