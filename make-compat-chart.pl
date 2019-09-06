@@ -665,6 +665,26 @@ while ($line = <S>) {
     }
 
     my $url = undef;
+    my $pc98 = 0;
+
+    if (open(URL,"$line/dosbox.conf")) {
+        foreach my $uline (<URL>) {
+            my $name,$value,$i;
+            chomp $uline;
+
+            $i = index($uline,'=');
+            next if $i <= 0;
+
+            $name = substr($uline,0,$i);
+            $value = substr($uline,$i+1);
+
+            if ($name eq "machine") {
+                if ($value eq "pc98") {
+                    $pc98 = 1;
+                }
+            }
+        }
+    }
 
     if (open(URL,"$line/__DOWNLOAD__")) {
         foreach my $uline (<URL>) {
@@ -681,6 +701,13 @@ while ($line = <S>) {
                 $url = $value;
             }
         }
+    }
+
+    if ($pc98) {
+        $disp_line .= " <sup style=\"color: rgb(0,63,0); font-size: 75%;\">(NEC PC-98)</sup>";
+    }
+    else {
+        $disp_line .= " <sup style=\"color: rgb(0,0,63); font-size: 75%;\">(IBM PC/XT/AT)</sup>";
     }
 
     if ($url ne "") {
