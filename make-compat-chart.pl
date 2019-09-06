@@ -435,7 +435,7 @@ while ($line = <S>) {
     }
 
     my $url = undef;
-    my $vcard = "svga";
+    my $vcard = "";
     my $pc98 = 0;
 
     if (open(URL,"$line/dosbox.conf")) {
