@@ -19,7 +19,11 @@ while ($i < @dirs) {
 
 $relpath =~ s/\/pub\//\//;
 
-$baseurl = "http://files.scene.org/get";
+# Fix your US mirror! Use the NL one in the meantime
+$baseurl = "http://files.scene.org/get:nl-http";
+
+# Uncomment this when they fix their US mirror
+#$baseurl = "http://files.scene.org/get";
 
 $url = $baseurl . $relpath;
 
@@ -38,7 +42,7 @@ die unless $x == 0;
 
 # unpack the ZIP archive
 if ($relpath =~ m/\.zip$/i) { # .zip, or .ZIP, or whatever
-    @args = ("unzip","_download_.zip"); # use InfoZip
+    @args = ("unzip","-o","_download_.zip"); # use InfoZip
     $x = system(@args);
     die unless $x == 0;
 }

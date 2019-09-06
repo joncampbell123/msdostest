@@ -1,8 +1,8 @@
 #!/usr/bin/perl
 my $skip = '';
-my $writecache=0;
 my $suffix="";
 my $suffic="";
+my $top=`pwd`; chomp $top;
 
 if ($ARGV[0] eq "svn") {
     $suffix=".svn";
@@ -25,15 +25,8 @@ elsif ($ARGV[0] eq "qemu") {
     $suffic="_QEMU";
 }
 
-if ( -f "pick-one$suffix.cache" ) {
-    $writecache=0;
-    open(X,"<","pick-one$suffix.cache") || die;
-}
-else {
-    $writecache=1;
-    open(X,"find -type d | sort |") || die;
-    open(C,">","pick-one$suffix.cache") || die;
-}
+open(X,"find -type d | sort |") || die;
+open(C,">","pick-one$suffix.cache") || die;
 
 sub escape_shell($) {
     my $x = shift(@_);
@@ -80,14 +73,19 @@ while (my $path = <X>) {
     else {
         $path_esc=escape_shell($path);
         $x=`cd $path_esc && ls -- *.exe *.EXE *.com *.COM 2>/dev/null | head -n 1`; chomp $x;
-        next if $x eq "";
-    }
 
-    print "$path\n";
-    print C "$path\n" if $writecache > 0;
+        if ($x eq "") {
+            if ($path =~ m/\.zip$/i && !( -f "$path/__UNPACKED__") ) {
+                print "Downloading/unpacking $path\n";
+                $shell="$top/demo-download.pl";
+                system("cd $path_esc && (echo | '$shell')") == 0 || die;
+            }
+
+            next;
+        }
+    }
 
     $skip = $path;
 }
-close(C) if $writecache > 0;
 close(X);
 
