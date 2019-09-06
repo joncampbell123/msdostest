@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
 my $url = undef;
+my $no_subdirs = 0;
 my $archivetype = undef;
 
 open(URL,"__DOWNLOAD__") || exit 0;
@@ -16,6 +17,9 @@ foreach my $line (<URL>) {
 
     if ($name eq "url") {
         $url = $value;
+    }
+    elsif ($name eq "no-subdirs") {
+        $no_subdirs = 1;
     }
     elsif ($name eq "archivetype") {
         $archivetype = $value;
@@ -43,7 +47,9 @@ die unless $x == 0;
 
 # unpack the ZIP archive
 if ($archivetype eq "zip") { # .zip, or .ZIP, or whatever
-    @args = ("unzip","-o","_download_.zip"); # use InfoZip
+    @args = ("unzip");
+    push(@args,"-j") if $no_subdirs == 1;
+    push(@args,"-o","_download_.zip"); # use InfoZip
     $x = system(@args);
     die unless $x == 0;
 }
