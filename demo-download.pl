@@ -12,6 +12,10 @@ foreach my $line (<URL>) {
 
     $name = substr($line,0,$i);
     $value = substr($line,$i+1);
+
+    if ($name eq "url") {
+        $url = $value;
+    }
 }
 exit 0 if $url eq "";
 close(URL);
