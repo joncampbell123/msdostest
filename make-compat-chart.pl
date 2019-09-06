@@ -665,9 +665,27 @@ while ($line = <S>) {
         $more .= "$comb NOTES: <pre>$combnotes</pre>";
     }
 
-    if ($disp_line =~ s/^ftp\.scene\.org\///) {
-        $disp_line =~ s/^pub\///;
-        print H "<td><a href=\"http://files.scene.org/get/$disp_line\">$disp_line</a>$more</td>";
+    my $url = undef;
+
+    if (open(URL,"$line/__DOWNLOAD__")) {
+        foreach my $uline (<URL>) {
+            my $name,$value,$i;
+            chomp $uline;
+
+            $i = index($uline,'=');
+            next if $i <= 0;
+
+            $name = substr($uline,0,$i);
+            $value = substr($uline,$i+1);
+
+            if ($name eq "url") {
+                $url = $value;
+            }
+        }
+    }
+
+    if ($url ne "") {
+        print H "<td><a href=\"$url\">$url</a>$more</td>";
     }
     else {
         print H "<td>$disp_line$more</td>";
