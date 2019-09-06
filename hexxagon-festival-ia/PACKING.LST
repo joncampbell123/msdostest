@@ -1,0 +1,17 @@
+
+ This file contains a list of all files required for redistributing HEXXAGON.
+
+Name              Size  Description
+------------    ------  ----------------------------------------------------
+HEXX     EXE     42309  Main program.
+GRAPHICS HXG    594348  Program data file.
+HEXXAGON DOC     11799  Program documentation.
+ORDERFRM DOC      2414  Order form.
+HEXX     ICO       766  Icon for MS Windows(tm).
+HEXX     PIF       545  Information file for MS Windows.
+LICENSE  DOC      6869  License agreement.
+VENDOR   DOC      8050  Vendor agreement.
+OMBUDSMN ASP       917  ASP statement.
+SYSOPS   DOC      2157  Information for SysOps.
+PACKING  LST       759  This file.
+FILE_ID  DIZ       354  Package description for bulletin board systems.
