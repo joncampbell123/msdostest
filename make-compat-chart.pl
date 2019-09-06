@@ -433,6 +433,50 @@ while ($line = <S>) {
         }
     }
 
+    my $url = undef;
+    my $vcard = "svga";
+    my $pc98 = 0;
+
+    if (open(URL,"$line/dosbox.conf")) {
+        foreach my $uline (<URL>) {
+            my $name,$value,$i;
+            chomp $uline;
+
+            $i = index($uline,'=');
+            next if $i <= 0;
+
+            $name = substr($uline,0,$i);
+            $value = substr($uline,$i+1);
+
+            if ($name eq "machine") {
+                if ($value eq "pc98") {
+                    $pc98 = 1;
+                }
+                else {
+                    $vcard = $value;
+                    $vcard = "vga" if $vcard eq "vgaonly";
+                }
+            }
+        }
+    }
+
+    if (open(URL,"$line/__DOWNLOAD__")) {
+        foreach my $uline (<URL>) {
+            my $name,$value,$i;
+            chomp $uline;
+
+            $i = index($uline,'=');
+            next if $i <= 0;
+
+            $name = substr($uline,0,$i);
+            $value = substr($uline,$i+1);
+
+            if ($name eq "url") {
+                $url = $value;
+            }
+        }
+    }
+
     my $notes_dosbox_qemu = undef;
     if ( -f "$line/__NOTES_QEMU__" ) {
         my $nline="",$pline,$res="",$ncount=0;
@@ -662,50 +706,6 @@ while ($line = <S>) {
     else {
         $more .= "<br>";
         $more .= "$comb NOTES: <pre>$combnotes</pre>";
-    }
-
-    my $url = undef;
-    my $vcard = "svga";
-    my $pc98 = 0;
-
-    if (open(URL,"$line/dosbox.conf")) {
-        foreach my $uline (<URL>) {
-            my $name,$value,$i;
-            chomp $uline;
-
-            $i = index($uline,'=');
-            next if $i <= 0;
-
-            $name = substr($uline,0,$i);
-            $value = substr($uline,$i+1);
-
-            if ($name eq "machine") {
-                if ($value eq "pc98") {
-                    $pc98 = 1;
-                }
-                else {
-                    $vcard = $value;
-                    $vcard = "vga" if $vcard eq "vgaonly";
-                }
-            }
-        }
-    }
-
-    if (open(URL,"$line/__DOWNLOAD__")) {
-        foreach my $uline (<URL>) {
-            my $name,$value,$i;
-            chomp $uline;
-
-            $i = index($uline,'=');
-            next if $i <= 0;
-
-            $name = substr($uline,0,$i);
-            $value = substr($uline,$i+1);
-
-            if ($name eq "url") {
-                $url = $value;
-            }
-        }
     }
 
     if ($pc98) {
