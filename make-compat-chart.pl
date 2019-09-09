@@ -737,7 +737,7 @@ while ($line = <S>) {
     }
 
     if ($url ne "") {
-        print H "<td>$disp_line<br><a href=\"$url\">$url</a>$more</td>";
+        print H "<td>$disp_line<br><a href=\"$url\">[Download]</a>$more</td>";
     }
     else {
         print H "<td>$disp_line$more</td>";
