@@ -200,6 +200,7 @@ if [[ -n "$tmp" ]]; then pc98=1; fi
 if [ $pc98 == 1 ]; then
     # for PC-98 games: FONT.ROM, MIDI and 86k card drum samples from *private* testing setup
     cp -vn /mnt/main/emu/pc98a/FONT.ROM "$x/" 2>/dev/null
+    cp -vn /mnt/main/emu/pc98a/SOUND.ROM "$x/" 2>/dev/null
     cp -vn /mnt/main/emu/pc98a/CM32L_*.ROM "$x/" 2>/dev/null
     cp -vn /mnt/main/emu/pc98a/MT32_*.ROM "$x/" 2>/dev/null
     cp -vn /mnt/main/emu/pc98a/2608_*.wav "$x/" 2>/dev/null
