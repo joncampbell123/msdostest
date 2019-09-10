@@ -127,6 +127,8 @@ commit() {
     if [ -f "__FAIL"$filesuffix"__" ]; then git add "__FAIL"$filesuffix"__"; fi
     if [ -f "__NOTES"$filesuffix"__" ]; then git add "__NOTES"$filesuffix"__"; fi
 
+    if [ -f "__PORN__" ]; then git add "__PORN__"; fi
+
     if [ -f "__WINDOWS__" ]; then git add "__WINDOWS__"; fi
     if [ -f "__WINDOWS_SVN__" ]; then git add "__WINDOWS_SVN__"; fi
 }
