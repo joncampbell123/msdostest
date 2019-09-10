@@ -160,6 +160,7 @@ export downld
 export testroot
 export testpick
 export -f run
+export -f porn
 export -f pass
 export -f fail
 export -f commit
