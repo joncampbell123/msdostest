@@ -95,6 +95,13 @@ windows() {
     commit
 }
 
+# PC-98 is also known for some adult material.
+# If it shows boobies or nudity or sexual content, it should be marked as porn.
+porn() {
+    echo $gitcommit >"__PORN__"
+    commit
+}
+
 pass() {
     rm -f "__FAIL"$filesuffix"__"
     echo $gitcommit >"__PASS"$filesuffix"__"
