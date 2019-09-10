@@ -1,0 +1,3 @@
+Why the demo failed the test:
+- Demo cannot determine vsync and therefore 3D geometry exhibits flickering if Ultrasound playback
+- "View the inside of a cube..." palette issue that causes all text to appear before it's supposed to
