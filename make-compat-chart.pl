@@ -224,6 +224,14 @@ while ($line = <S>) {
     die unless !defined($pass_dosbox_xdos_rev);
     die unless !defined($pass_dosbox_xdos_rev_file);
 
+    # perhaps in the future the file could explain what content is in there.
+    # until then, it's a helpful warning that the game (especially if PC-98)
+    # has some pornographic content.
+    $porn = 0;
+    if ( -f "$line/__PORN__" ) {
+        $porn = 1;
+    }
+
     if ( -f "$line/__PASS_XDOS__" ) {
         $tot_xdos++;
         $pass_xdos++;
@@ -734,6 +742,10 @@ while ($line = <S>) {
             $disp_line .= " ".uc($vcard);
         }
         $disp_line .= "</sup>";
+    }
+
+    if ($porn) {
+        $disp_line .= " <sup style=\"color: rgb(127,0,0); font-size: 60%;\">PORN</sup>";
     }
 
     if ($url ne "") {
