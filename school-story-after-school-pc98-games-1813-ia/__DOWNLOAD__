@@ -1,0 +1,4 @@
+url=https://archive.org/download/PC98_Games_1813/%28Emu%29%20PC98_Games%20%5B1813%25E6%259C%25AC%5D.zip/98XX_games%2F%5BPC98%5D%20%E5%AD%A6%E5%9C%92%E7%89%A9%E8%AA%9E%20%E3%81%84%E3%81%91%E3%81%AA%E3%81%84%E6%94%BE%E8%AA%B2%E5%BE%8C%20%28hdi%29.zip
+# fixme: extracted file is an NHD image with Shift-JIS in the name, which InfoZip unzip does NOT like!
+#        you can extract with 7-zip but the name may not be compatible with your filesystem! Rename
+#        to game.nhd after download.
