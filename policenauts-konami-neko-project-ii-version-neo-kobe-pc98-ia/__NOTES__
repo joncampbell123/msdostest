@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Uses OAK CD-ROM IDE driver, which DOSBox-X is not able to satisfy
