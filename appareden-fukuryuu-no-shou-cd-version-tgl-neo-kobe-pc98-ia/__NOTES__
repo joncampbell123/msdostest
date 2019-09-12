@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- HDI image loads OAK IDE CD-ROM driver, which DOSBox-X is not able to satisfy even if IDE emulation is enabled
