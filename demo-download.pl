@@ -68,20 +68,24 @@ else {
 
     close(URL);
 
+    my $dnname;
+
+    if ($archivetype eq "exe") {
+        $dnname = "_dnload_.$archivetype";
+    }
+    else {
+        $dnname = "_download_.$archivetype";
+    }
+
     print "Final URL: $url\n";
+    print "Download name: $dnname\n";
     print "Hit ENTER to proceed.\n";
 
     $x = <STDIN>;
     chomp $x;
     die unless $x eq "";
 
-    my @args;
-    if ($archivetype eq "exe") {
-        @args = ("wget","-O","_dnload_.$archivetype","--continue","--",$url);
-    }
-    else {
-        @args = ("wget","-O","_download_.$archivetype","--continue","--",$url);
-    }
+    my @args = ("wget","-O",$dnname,"--continue","--",$url);
 
     $x = system(@args);
     die unless $x == 0;
