@@ -1,9 +1,16 @@
 #!/usr/bin/perl
 
+use File::Basename;
+
 my $url = undef;
 my $no_subdirs = 0;
 my $archivetype = undef;
 my $manual_download_url;
+my @needs;
+
+my $this_script_dir = dirname($0);
+die unless $this_script_dir ne "";
+die unless -d $this_script_dir;
 
 open(URL,"__DOWNLOAD__") || exit 0;
 foreach my $line (<URL>) {
@@ -27,6 +34,9 @@ foreach my $line (<URL>) {
     }
     elsif ($name eq "archivetype") {
         $archivetype = $value;
+    }
+    elsif ($name eq "needs") {
+        push(@needs,$value);
     }
 }
 
@@ -82,5 +92,19 @@ elsif ($archivetype eq "rar") { # .rar, or .RAR, or whatever
 }
 else {
     print "Warning: I do not know how to unpack this archive\n";
+}
+
+# needs?
+for ($i=0;$i < @needs;$i++) {
+    my $need = $needs[$i];
+
+    my $file = $this_script_dir."/needs-$need.zip";
+
+    die "cannot find need $need ($file)" unless -f $file;
+
+    @args = ("unzip");
+    push(@args,"-o",$file); # use InfoZip
+    $x = system(@args);
+    die unless $x == 0;
 }
 
