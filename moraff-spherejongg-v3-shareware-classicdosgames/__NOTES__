@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Graphics do not appear. May be a known issue with transparent BitBlt and the S3 SVGA emulation.
