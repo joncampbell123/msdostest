@@ -58,6 +58,9 @@ else {
     elsif ($url =~ m/\.rar$/i) {
         $archivetype = "rar";
     }
+    elsif ($url =~ m/\.exe$/i) {
+        $archivetype = "exe";
+    }
 
     close(URL);
 
@@ -68,7 +71,13 @@ else {
     chomp $x;
     die unless $x eq "";
 
-    my @args = ("wget","-O","_download_.$archivetype","--continue","--",$url);
+    my @args;
+    if ($archivetype eq "exe") {
+        @args = ("wget","-O","_dnload_.$archivetype","--continue","--",$url);
+    }
+    else {
+        @args = ("wget","-O","_download_.$archivetype","--continue","--",$url);
+    }
 
     $x = system(@args);
     die unless $x == 0;
@@ -89,6 +98,8 @@ elsif ($archivetype eq "rar") { # .rar, or .RAR, or whatever
     push(@args,"_download_.rar"); # use InfoZip
     $x = system(@args);
     die unless $x == 0;
+}
+elsif ($archivetype eq "exe") { # standalone exe, do nothing
 }
 else {
     print "Warning: I do not know how to unpack this archive\n";
