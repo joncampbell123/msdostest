@@ -55,6 +55,7 @@ sub escape_shell($) {
 
 my $totalcount = 0;
 my $tot_pc98 = 0;
+my $tot_svn_noncompat = 0;
 my $tot_x = 0,$pass_x = 0;
 my $tot_svn = 0,$pass_svn = 0;
 my $tot_xdos = 0,$pass_xdos = 0;
@@ -501,6 +502,12 @@ while ($line = <S>) {
     if ($pc98) {
         $tot_pc98++;
     }
+    else {
+        # DOSBox SVN cannot run Windows 95 reliably nor is it expected to
+        if ($needs_windows =~ m/^windows9/) {
+            $tot_svn_noncompat++;
+        }
+    }
 
     my $notes_dosbox_qemu = undef;
     if ( -f "$line/__NOTES_QEMU__" ) {
@@ -826,13 +833,17 @@ sub makestat($$$) {
                    $percent);
 }
 
+# DOSBox SVN cannot run Windows 95 nor is it reliably meant to
+$tot_svn -= $tot_svn_noncompat;
+$tot_svndos -= $tot_svn_noncompat;
+
 print H "<tr>\n";
-print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount          ,$tot_x,$pass_x)."</td>";
-print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount-$tot_pc98,$tot_svn,$pass_svn)."</td>";
-print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount          ,$tot_xdos,$pass_xdos)."</td>";
-print H "<td style=\"min-width: 8em; text-align: center;\">".makestat($totalcount-$tot_pc98,$tot_svndos,$pass_svndos)."</td>";
-print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount-$tot_pc98,$tot_bochs,$pass_bochs)."</td>";
-print H "<td style=\"min-width: 4em; text-align: center;\">".makestat($totalcount-$tot_pc98,$tot_qemu,$pass_qemu)."</td>";
+print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount,                             $tot_x,$pass_x)."</td>";
+print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount-$tot_pc98-$tot_svn_noncompat,$tot_svn,$pass_svn)."</td>";
+print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount,                             $tot_xdos,$pass_xdos)."</td>";
+print H "<td style=\"min-width: 8em; text-align: center;\">".makestat($totalcount-$tot_pc98-$tot_svn_noncompat,$tot_svndos,$pass_svndos)."</td>";
+print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount-$tot_pc98,                   $tot_bochs,$pass_bochs)."</td>";
+print H "<td style=\"min-width: 4em; text-align: center;\">".makestat($totalcount-$tot_pc98,                   $tot_qemu,$pass_qemu)."</td>";
 print H "<td>TEST RESULTS</td>";
 print H "</tr>\n";
 
