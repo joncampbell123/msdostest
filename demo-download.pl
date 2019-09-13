@@ -102,7 +102,9 @@ for ($i=0;$i < @needs;$i++) {
 
     die "cannot find need $need ($file)" unless -f $file;
 
+    print "Unpacking need $need...\n";
     @args = ("unzip");
+    push(@args,"-q");
     push(@args,"-o",$file); # use InfoZip
     $x = system(@args);
     die unless $x == 0;
