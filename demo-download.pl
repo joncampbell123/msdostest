@@ -7,6 +7,7 @@ my $no_subdirs = 0;
 my $archivetype = undef;
 my $manual_download_url;
 my @img_install;
+my $img_autorun;
 my @needs;
 
 my $this_script_dir = dirname($0);
@@ -41,6 +42,9 @@ foreach my $line (<URL>) {
     }
     elsif ($name eq "img-install") {
         push(@img_install,$value);
+    }
+    elsif ($name eq "img-autorun") {
+        $img_autorun = $value;
     }
 }
 
@@ -168,7 +172,21 @@ if (@img_install > 0) {
         $name =~ s/^\///g;
         # do it
         die unless -f $value;
-        $x = system("mcopy","-Q","-n","-m","-v","-i",$mtoolspec,$value,"::".$name);
+        $x = system("mcopy","-Q","-n","-m","-v","-o","-i",$mtoolspec,$value,"::".$name);
+        die unless $x == 0;
+    }
+
+    if (defined($img_autorun) && $img_autorun ne "") {
+        # at the moment I do not have the time or effort to generate Win95 compatible .LNK files
+        # so we'll have to do for the time being running it with WIN.COM from AUTOEXEC.BAT
+        $x = system("mcopy","-Q","-n","-m","-v","-o","-i",$mtoolspec,"::AUTOEXEC.BAT","autoexec.tmp");
+        die unless $x == 0;
+
+        open(A,">>autoexec.tmp") || die;
+        print A "WIN C:".$img_autorun."\r\n";
+        close(A);
+
+        $x = system("mcopy","-Q","-n","-m","-v","-o","-i",$mtoolspec,"autoexec.tmp","::AUTOEXEC.BAT");
         die unless $x == 0;
     }
 }
