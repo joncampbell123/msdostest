@@ -1,5 +1,5 @@
 @echo off
-mkdir \demo
-cd \demo
+mkdir \demoinst
+cd \demoinst
 \pkunzip -d \demo.zip
 
