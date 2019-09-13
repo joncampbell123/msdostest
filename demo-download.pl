@@ -166,10 +166,10 @@ if (@img_install > 0) {
         $name = undef;
         $value = undef;
         # cut
-        $i = index($spec,'=');
-        next if $i <= 0;
-        $name = substr($spec,0,$i);
-        $value = substr($spec,$i+1);
+        $ci = index($spec,'=');
+        next if $ci <= 0;
+        $name = substr($spec,0,$ci);
+        $value = substr($spec,$ci+1);
         next unless defined($name);
         next unless defined($value);
         next if $name eq "";
