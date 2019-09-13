@@ -1,0 +1,5 @@
+url=https://archive.org/download/ColorLinez_1020/winlinez.zip
+needs=windows95
+img-install=winlinez.exe=WINLINEZ.EXE
+img-autorun=\winlinez.exe
+
