@@ -77,18 +77,24 @@ else {
         $dnname = "_download_.$archivetype";
     }
 
-    print "Final URL: $url\n";
-    print "Download name: $dnname\n";
-    print "Hit ENTER to proceed.\n";
+    if ( -f $dnname ) {
+    }
+    else {
+        print "Final URL: $url\n";
+        print "Download name: $dnname\n";
+        print "Hit ENTER to proceed.\n";
 
-    $x = <STDIN>;
-    chomp $x;
-    die unless $x eq "";
+        $x = <STDIN>;
+        chomp $x;
+        die unless $x eq "";
 
-    my @args = ("wget","-O",$dnname,"--continue","--",$url);
+        my @args = ("wget","-O","$dnname.part","--continue","--",$url);
 
-    $x = system(@args);
-    die unless $x == 0;
+        $x = system(@args);
+        die unless $x == 0;
+
+        rename("$dnname.part",$dnname) || die;
+    }
 }
 
 # unpack the ZIP archive
