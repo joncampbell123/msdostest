@@ -1,5 +1,5 @@
 url=https://archive.org/download/swizzle_demu_Dw21/dw21.exe
-needs=windows95osr2
+needs=windows98
 img-install=\dopewars.exe=_dnload_.exe
 img-autorun=\dopewars.exe
 
