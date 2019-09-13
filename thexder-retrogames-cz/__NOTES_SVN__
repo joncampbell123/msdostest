@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- DOSBox SVN cannot mount a disk image that it can't auto-detect geometry
