@@ -149,6 +149,10 @@ for ($i=0;$i < @needs;$i++) {
         $img = "win95osr2";
         $mtoolspec = "win95osr2\@\@32256";
     }
+    elsif ($need eq "windows98") {
+        $img = "win98";
+        $mtoolspec = "win98\@\@32256";
+    }
 }
 
 if (@img_install > 0) {
