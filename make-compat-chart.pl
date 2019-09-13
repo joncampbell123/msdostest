@@ -442,6 +442,7 @@ while ($line = <S>) {
         }
     }
 
+    my $manual_url = undef;
     my $url = undef;
     my $vcard = "";
     my $pc98 = 0;
@@ -482,6 +483,9 @@ while ($line = <S>) {
 
             if ($name eq "url") {
                 $url = $value;
+            }
+            elsif ($name eq "manual download url") {
+                $manual_url = $value;
             }
         }
     }
@@ -750,6 +754,9 @@ while ($line = <S>) {
 
     if ($url ne "") {
         print H "<td>$disp_line<br><a href=\"$url\">[Download]</a>$more</td>";
+    }
+    elsif ($manual_url ne "") {
+        print H "<td>$disp_line<br><a href=\"$manual_url\">[Download through website]</a>$more</td>";
     }
     else {
         print H "<td>$disp_line$more</td>";
