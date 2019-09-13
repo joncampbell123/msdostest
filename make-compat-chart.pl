@@ -470,6 +470,8 @@ while ($line = <S>) {
         }
     }
 
+    my $needs_windows = undef;
+
     if (open(URL,"$line/__DOWNLOAD__")) {
         foreach my $uline (<URL>) {
             my $name,$value,$i;
@@ -486,6 +488,11 @@ while ($line = <S>) {
             }
             elsif ($name eq "manual download url") {
                 $manual_url = $value;
+            }
+            elsif ($name eq "needs") {
+                if ($value =~ m/^windows/) {
+                    $needs_windows = $value;
+                }
             }
         }
     }
@@ -742,6 +749,11 @@ while ($line = <S>) {
     }
     else {
         $disp_line .= " <sup style=\"color: rgb(0,0,63); font-size: 60%;\">IBM PC/XT/AT";
+        if (defined($needs_windows)) {
+            my $needs_windows_vis = $needs_windows;
+            $needs_windows_vis =~ s/^windows/win/;
+            $disp_line .= " ".uc($needs_windows_vis);
+        }
         if ($vcard ne "") {
             $disp_line .= " ".uc($vcard);
         }
