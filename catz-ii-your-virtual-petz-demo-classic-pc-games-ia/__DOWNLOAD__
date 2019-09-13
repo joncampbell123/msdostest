@@ -1,0 +1,5 @@
+url=https://archive.org/download/CATZ2/CATZ2.zip
+needs=windows95
+img-install=\demo.zip=_download_.zip
+img-install=\pkunzip.exe=..\pkunzip.exe
+
