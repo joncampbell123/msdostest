@@ -6,6 +6,7 @@ my $url = undef;
 my $no_subdirs = 0;
 my $archivetype = undef;
 my $manual_download_url;
+my @img_install;
 my @needs;
 
 my $this_script_dir = dirname($0);
@@ -37,6 +38,9 @@ foreach my $line (<URL>) {
     }
     elsif ($name eq "needs") {
         push(@needs,$value);
+    }
+    elsif ($name eq "img-install") {
+        push(@img_install,$value);
     }
 }
 
@@ -105,6 +109,9 @@ else {
     print "Warning: I do not know how to unpack this archive\n";
 }
 
+my $img = undef;
+my $mtoolspec = undef;
+
 # needs?
 for ($i=0;$i < @needs;$i++) {
     my $need = $needs[$i];
@@ -119,5 +126,10 @@ for ($i=0;$i < @needs;$i++) {
     push(@args,"-o",$file); # use InfoZip
     $x = system(@args);
     die unless $x == 0;
+
+    if ($need eq "windows95") {
+        $img = "win95";
+        $mtoolspec = "win95@@32256";
+    }
 }
 
