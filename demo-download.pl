@@ -129,7 +129,37 @@ for ($i=0;$i < @needs;$i++) {
 
     if ($need eq "windows95") {
         $img = "win95";
-        $mtoolspec = "win95@@32256";
+        $mtoolspec = "win95\@\@32256";
+    }
+}
+
+if (@img_install > 0) {
+    die unless defined $img;
+    die unless defined $mtoolspec;
+    die unless -f $img;
+
+    for ($i=0;$i < @img_install;$i++) {
+        $spec = $img_install[$i];
+        # dest=source
+        $name = undef;
+        $value = undef;
+        # cut
+        $i = index($spec,'=');
+        next if $i <= 0;
+        $name = substr($spec,0,$i);
+        $value = substr($spec,$i+1);
+        next unless defined($name);
+        next unless defined($value);
+        next if $name eq "";
+        next if $value eq "";
+        # convert \ to /
+        $name =~ s/\\/\//g;
+        # remove leading /
+        $name =~ s/^\///g;
+        # do it
+        die unless -f $value;
+        $x = system("mcopy","-Q","-n","-m","-v","-i",$mtoolspec,$value,"::".$name);
+        die unless $x == 0;
     }
 }
 
