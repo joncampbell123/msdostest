@@ -1,0 +1,5 @@
+url=https://archive.org/download/outdemo_v2/outdemo_v2.exe
+needs=windows95osr2
+img-install=\outlaws.exe=_dnload_.exe
+img-autorun=\outlaws.exe
+
