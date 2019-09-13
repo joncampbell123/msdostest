@@ -69,6 +69,7 @@ open(S,"(find -type d; find -type l; cat $list) | sort | uniq |") || die;
 while ($line = <S>) {
     chomp $line;
 
+    next if $line eq ".";
     next unless -d $line;
 
     # some are symlinks
