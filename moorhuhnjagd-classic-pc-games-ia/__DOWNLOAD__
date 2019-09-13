@@ -1,6 +1,7 @@
 url=https://archive.org/download/Moorhuhnjagd_1020/moorhuhn.zip
-needs=windows95osr2
+needs=windows98
 img-install=MOORHUHN.EXE=MOORHUHN.EXE
 img-install=MOORHUHN.DAT=MOORHUHN.DAT
-img-autorun=\MOORHUHN.EXE
+img-install=MOORHUHN.BAT=moorhuhn.bat
+img-autorun=\MOORHUHN.BAT
 
