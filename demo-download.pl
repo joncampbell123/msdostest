@@ -3,6 +3,7 @@
 my $url = undef;
 my $no_subdirs = 0;
 my $archivetype = undef;
+my $manual_download_url;
 
 open(URL,"__DOWNLOAD__") || exit 0;
 foreach my $line (<URL>) {
@@ -18,6 +19,9 @@ foreach my $line (<URL>) {
     if ($name eq "url") {
         $url = $value;
     }
+    elsif ($name eq "manual download url") {
+        $manual_download_url = $value;
+    }
     elsif ($name eq "no-subdirs") {
         $no_subdirs = 1;
     }
@@ -25,28 +29,40 @@ foreach my $line (<URL>) {
         $archivetype = $value;
     }
 }
-exit 0 if $url eq "";
 
-if ($url =~ m/\.zip$/i) {
-    $archivetype = "zip";
+# some games don't let you directly download the ZIP, you have to visit their site
+if (defined $manual_download_url) {
+    if (!( -f "_download_.$archivetype" )) {
+        print "How to obtain this game:\n";
+        print "Visit this URL: $manual_download_url\n";
+        print "Download the game, then place it here and name it _download_.$archivetype and run this script again.\n";
+        exit 1;
+    }
 }
-elsif ($url =~ m/\.rar$/i) {
-    $archivetype = "rar";
+else {
+    exit 0 if $url eq "";
+
+    if ($url =~ m/\.zip$/i) {
+        $archivetype = "zip";
+    }
+    elsif ($url =~ m/\.rar$/i) {
+        $archivetype = "rar";
+    }
+
+    close(URL);
+
+    print "Final URL: $url\n";
+    print "Hit ENTER to proceed.\n";
+
+    $x = <STDIN>;
+    chomp $x;
+    die unless $x eq "";
+
+    my @args = ("wget","-O","_download_.$archivetype","--continue","--",$url);
+
+    $x = system(@args);
+    die unless $x == 0;
 }
-
-close(URL);
-
-print "Final URL: $url\n";
-print "Hit ENTER to proceed.\n";
-
-$x = <STDIN>;
-chomp $x;
-die unless $x eq "";
-
-my @args = ("wget","-O","_download_.$archivetype","--continue","--",$url);
-
-$x = system(@args);
-die unless $x == 0;
 
 # unpack the ZIP archive
 if ($archivetype eq "zip") { # .zip, or .ZIP, or whatever
