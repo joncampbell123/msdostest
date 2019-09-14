@@ -1,0 +1,3 @@
+Why the demo failed the test:
+- Initial menu is not shown due to reliance on LIO BIOS calls
+- Cannot pass first screen
