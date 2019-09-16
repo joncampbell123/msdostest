@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- ZIP extraction scripts cannot currently handle filenames entirely in ShiftJIS properly
