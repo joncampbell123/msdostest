@@ -129,6 +129,8 @@ commit() {
 
     if [ -f "__PORN__" ]; then git add "__PORN__"; fi
 
+    if [ -f "__DOWNLOAD__" ]; then git add "__DOWNLOAD__"; fi
+
     if [ -f "__WINDOWS__" ]; then git add "__WINDOWS__"; fi
     if [ -f "__WINDOWS_SVN__" ]; then git add "__WINDOWS_SVN__"; fi
 }
