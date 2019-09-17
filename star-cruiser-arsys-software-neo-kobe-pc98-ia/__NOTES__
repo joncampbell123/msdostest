@@ -1,0 +1,3 @@
+Why the demo failed the test:
+- Hangs at logo, waiting for interrupts
+- Talks to FM I/O at 88h/8Ah which DOSBox-X does not implement yet (26k and 86 FM board emulation does not provide it(
