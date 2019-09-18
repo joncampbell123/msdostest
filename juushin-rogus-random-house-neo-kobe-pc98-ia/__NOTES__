@@ -1,0 +1,3 @@
+Why the demo failed the test:
+- Game appears broken. Attempt to start a level puts you in a void full of garbage noise on the screen with no control.
+- Title appears not to render properly, the "Random House" text at the bottom, unless that is how it works.
