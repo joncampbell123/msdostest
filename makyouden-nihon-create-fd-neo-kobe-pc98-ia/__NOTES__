@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Prompts for disk C, does not recognize it even if given disk C

@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Game is asking for disk B, even if booting from an HDI image (?)
