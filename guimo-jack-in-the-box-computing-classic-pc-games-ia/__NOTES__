@@ -1,0 +1,2 @@
+- The demo's Sound Blaster routines appear to have reliability problems with distorted audio in the "high quality" music setting. Set to medium or low.
+- DOSBox SVN seems to have a lot of problems with even the "medium" music setting, set to low.
