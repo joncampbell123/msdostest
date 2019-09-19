@@ -1,0 +1,4 @@
+url=https://archive.org/download/Xonix32_1020/xonix101.zip
+needs=windows95
+img-install=\Xonix32.exe=Xonix32.exe
+img-autorun=\Xonix32.exe
