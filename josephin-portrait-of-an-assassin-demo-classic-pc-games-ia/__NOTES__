@@ -1,0 +1,3 @@
+- This game apparently requires both DirectX and WinG to run
+- Game uses Intel Indeo 3 compressed AVI files for "FMV"
+- Game will set the video mode to 256-color mode during the game, even if you set higher bit depth on your desktop
