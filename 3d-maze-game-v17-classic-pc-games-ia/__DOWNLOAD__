@@ -1,0 +1,7 @@
+url=https://archive.org/download/3DMAZE/3DMAZE.zip
+needs=windows95osr2
+img-install=\demo.zip=_download_.zip
+img-install=\pkunzip.exe=../pkunzip.exe
+img-install=\run.bat=run.bat
+img-autorun=\run.bat
+
