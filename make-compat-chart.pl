@@ -93,6 +93,8 @@ while ($line = <S>) {
     die unless !defined($pass_dosbox_x_rev);
     die unless !defined($pass_dosbox_x_rev_file);
 
+    next unless -f "$line/dosbox.conf";
+
     if ( -f "$line/__PASS__" ) {
         $tot_x++;
         $pass_x++;
