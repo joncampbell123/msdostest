@@ -1,0 +1,175 @@
+[windows]
+spooler=yes
+load=
+run=
+Beep=yes
+NullPort=None
+BorderWidth=3
+CursorBlinkRate=530
+DoubleClickSpeed=452
+Programs=com exe bat pif
+Documents=
+DeviceNotSelectedTimeout=15
+TransmissionRetryTimeout=45
+KeyboardDelay=2
+KeyboardSpeed=31
+ScreenSaveActive=0
+ScreenSaveTimeOut=120
+
+[Desktop]
+Pattern=(None)
+Wallpaper=(None)
+GridGranularity=0
+
+[Extensions]
+cal=calendar.exe ^.cal
+crd=cardfile.exe ^.crd
+trm=terminal.exe ^.trm
+txt=notepad.exe ^.txt
+ini=notepad.exe ^.ini
+pcx=pbrush.exe ^.pcx
+bmp=pbrush.exe ^.bmp
+wri=write.exe ^.wri
+rec=recorder.exe ^.rec
+hlp=winhelp.exe ^.hlp
+mak=C:\MSVC\BIN\msvc.exe ^.mak
+mov=C:\WINDOWS\PLAYER.EXE ^.mov
+pic=C:\WINDOWS\VIEWER.EXE ^.pic
+
+[intl]
+sLanguage=enu
+sCountry=United States
+iCountry=1
+iDate=0
+iTime=0
+iTLZero=0
+iCurrency=0
+iCurrDigits=2
+iNegCurr=0
+iLzero=1
+iDigits=2
+iMeasure=1
+s1159=AM
+s2359=PM
+sCurrency=$
+sThousand=,
+sDecimal=.
+sDate=/
+sTime=:
+sList=,
+sShortDate=M/d/yy
+sLongDate=dddd, MMMM dd, yyyy
+
+[ports]
+; A line with [filename].PRN followed by an equal sign causes
+; [filename] to appear in the Control Panel's Printer Configuration dialog
+; box. A printer connected to [filename] directs its output into this file.
+LPT1:=
+LPT2:=
+LPT3:=
+COM1:=9600,n,8,1,x
+COM2:=9600,n,8,1,x
+COM3:=9600,n,8,1,x
+COM4:=9600,n,8,1,x
+EPT:=
+FILE:=
+LPT1.DOS=
+LPT2.DOS=
+
+[FontSubstitutes]
+Helv=MS Sans Serif
+Tms Rmn=MS Serif
+Times=Times New Roman
+Helvetica=Arial
+
+[TrueType]
+
+[Sounds]
+SystemDefault=ding.wav, Default Beep
+SystemExclamation=chord.wav, Exclamation
+SystemStart=chimes.wav, Windows Start
+SystemExit=chimes.wav, Windows Exit
+SystemHand=chord.wav, Critical Stop
+SystemQuestion=chord.wav, Question
+SystemAsterisk=chord.wav, Asterisk
+
+[mci extensions]
+wav=waveaudio
+mid=sequencer
+rmi=sequencer
+avi=AVIVideo
+mov=QTWVideo
+pic=QTWVideo
+jpg=QTWVideo
+
+[Compatibility]
+NOTSHELL=0x0001
+WPWINFIL=0x0006
+CCMAIL=0x0008
+AMIPRO=0x0010
+REM=0x8022
+PIXIE=0x0040
+CP=0x0040
+JW=0x42080
+TME=0x0100
+VB=0x0200
+WIN2WRS=0x1210
+PACKRAT=0x0800
+VISION=0x0040
+MCOURIER=0x0800
+_BNOTES=0x24000
+MILESV3=0x1000
+PM4=0x2000
+DESIGNER=0x2000
+PLANNER=0x2000
+DRAW=0x2000
+WINSIM=0x2000
+CHARISMA=0x2000
+PR2=0x2000
+PLUS=0x1000
+ED=0x00010000
+APORIA=0x0100
+EXCEL=0x1000
+GUIDE=0x1000
+NETSET2=0x0100
+W4GL=0x4000
+W4GLR=0x4000
+TURBOTAX=0x00080000
+
+[Microsoft Word 2.0]
+HPDSKJET=+1
+
+[fonts]
+Modern (Plotter)=MODERN.FON
+Script (Plotter)=SCRIPT.FON
+Roman (Plotter)=ROMAN.FON
+Small Fonts (VGA res)=SMALLE.FON
+Symbol 8,10,12,14,18,24 (VGA res)=SYMBOLE.FON
+MS Serif 8,10,12,14,18,24 (VGA res)=SERIFE.FON
+Courier 10,12,15 (VGA res)=COURE.FON
+MS Sans Serif 8,10,12,14,18,24 (VGA res)=SSERIFE.FON
+Arial (TrueType)=ARIAL.FOT
+Arial Bold (TrueType)=ARIALBD.FOT
+Arial Bold Italic (TrueType)=ARIALBI.FOT
+Arial Italic (TrueType)=ARIALI.FOT
+Courier New (TrueType)=COUR.FOT
+Courier New Bold (TrueType)=COURBD.FOT
+Courier New Bold Italic (TrueType)=COURBI.FOT
+Courier New Italic (TrueType)=COURI.FOT
+Times New Roman (TrueType)=TIMES.FOT
+Times New Roman Bold (TrueType)=TIMESBD.FOT
+Times New Roman Bold Italic (TrueType)=TIMESBI.FOT
+Times New Roman Italic (TrueType)=TIMESI.FOT
+WingDings (TrueType)=WINGDING.FOT
+Symbol (TrueType)=SYMBOL.FOT
+
+[embedding]
+SoundRec=Sound,Sound,SoundRec.exe,picture
+Package=Package,Package,packager.exe,picture
+PBrush=Paintbrush Picture,Paintbrush Picture,pbrush.exe,picture
+MPlayer=Media Clip,Media Clip,mplayer.exe,picture
+PlayerFrameClass=QuickTime Movie,QuickTime Movie,c:\windows\player.exe,picture
+ViewerFrameClass=QuickTime Picture,QuickTime Picture,c:\windows\viewer.exe,picture
+
+[drawdib]
+s3vsnd.drv 800x600x8(5)=1,0,0,0

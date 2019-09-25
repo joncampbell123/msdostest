@@ -1,0 +1,128 @@
+[boot]           
+386grabber=s3911grb.3gr
+oemfonts.fon=vgaoem.fon
+286grabber=vgacolor.2gr
+fixedfon.fon=vgafix.fon
+fonts.fon=vgasys.fon
+display.drv=s3vsnd.drv
+shell=progman.exe
+mouse.drv=mouse.drv
+network.drv=
+language.dll=
+sound.drv=mmsound.drv
+comm.drv=comm.drv
+keyboard.drv=keyboard.drv
+system.drv=system.drv
+drivers=mmsystem.dll msmixmgr.dll
+
+[keyboard]
+subtype=
+type=4
+keyboard.dll=
+oemansi.bin=
+
+[boot.description]
+aspect=100,96,96
+displayinf=OEM0.INF
+display.drv=S3 864 1.41B5  800x600   256 colors SF
+keyboard.typ=Enhanced 101 or 102 key US and Non US keyboards
+mouse.drv=Microsoft, or IBM PS/2
+network.drv=No Network Installed
+language.dll=English (American)
+system.drv=MS-DOS System
+codepage=437
+woafont.fon=English (437)
+
+[386Enh]
+display=vdds3vsn.386
+EGA80WOA.FON=EGA80WOA.FON
+EGA40WOA.FON=EGA40WOA.FON
+CGA80WOA.FON=CGA80WOA.FON
+CGA40WOA.FON=CGA40WOA.FON
+mouse=*vmd
+network=*dosnet,*vnetbios
+ebios=*ebios
+woafont=dosapp.fon
+keyboard=*vkd
+device=vtdapi.386
+device=*vpicd
+device=vtda.386
+device=*reboot
+device=*vdmad
+device=*vsd
+device=*v86mmgr
+device=*pageswap
+device=*dosmgr
+device=*vmpoll
+device=*wshell
+device=*BLOCKDEV
+device=*PAGEFILE
+device=*vfd
+device=*parity
+device=*biosxlat
+device=*vcd
+device=*vmcpd
+device=*combuff
+device=*cdpscsi
+local=CON
+FileSysChange=off
+PagingFile=C:\WINDOWS\WIN386.SWP
+MaxPagingFileSize=28672
+device=vsbpd.386
+
+[standard]
+
+[NonWindowsApp]
+localtsrs=dosedit,ced
+
+[mci]
+WaveAudio=mciwave.drv
+Sequencer=mciseq.drv
+CDAudio=mcicda.drv
+
+[drivers]
+timer=timer.drv
+midimapper=midimap.drv
+Midi=sb16fm.drv
+Midi1=sb16snd.drv
+Wave=sb16snd.drv
+Aux=sb16snd.drv
+Mixer=sb16snd.drv
+
+[DISPLAY]
+dpi=96
+color-format=8
+screen-size=800
+fastmmio=on
+textrmw=0
+scache=on
+ellipse-support=on
+polygon-support=on
+dac-type=nbt
+[sndblst.drv]
+Port=220
+Int=5
+DmaChannel=1
+MidiPort=330
+HDmaChannel=5
+FDMAPlayBack=1
+FDMARecording=1
+FullDuplex=1
+VoiceVolume=16, 16
+FMVolume=16, 16
+CDVolume=16, 16
+LineVolume=16, 16
+MicVolume=16
+MasterVolume=16, 16
+SpeakerVolume=16
+AuxVolume=0, 0
+InputMasterVolume=16, 16
+MuteVirtual=10
+OutputMixerSwitch=6
+BassTone=16, 16
+TrebleTone=16, 16
+RecordGain=1, 1
+OutputGain=1, 1
+AGC=0
+Mux_WaveIn=1e
+
