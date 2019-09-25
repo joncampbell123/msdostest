@@ -69,6 +69,9 @@ else {
     elsif ($url =~ m/\.exe$/i) {
         $archivetype = "exe";
     }
+    elsif ($url =~ m/\.iso$/i) {
+        $archivetype = "iso";
+    }
 
     close(URL);
 
@@ -118,6 +121,8 @@ elsif ($archivetype eq "rar") { # .rar, or .RAR, or whatever
     die unless $x == 0;
 }
 elsif ($archivetype eq "exe") { # standalone exe, do nothing
+}
+elsif ($archivetype eq "iso") {
 }
 else {
     print "Warning: I do not know how to unpack this archive\n";
