@@ -1,2 +1,3 @@
 Why the demo failed the test:
 - Uses VESA 8-bit DAC mode, which DOSBox-X does not emulate properly for this game.
+- Fixups may be aided by studying the source code [https://github.com/ExiguusEntertainment/AmuletsArmor]
