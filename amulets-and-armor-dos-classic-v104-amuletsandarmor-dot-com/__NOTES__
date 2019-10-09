@@ -1,3 +1,2 @@
-Why the demo failed the test:
-- Uses VESA 8-bit DAC mode, which DOSBox-X does not emulate properly for this game.
-- Fixups may be aided by studying the source code [https://github.com/ExiguusEntertainment/AmuletsArmor]
+Game bugs:
+- VGA palette management requires DOSBox/DOSBox-X to mask the DAC values to 6 bit, or else signed char overflow happens and an "overbright" effect happens.
