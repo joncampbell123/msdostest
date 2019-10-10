@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Some graphics do not draw, including startup logo and UI selection. Unknown INT 18h AH=47h calls.
