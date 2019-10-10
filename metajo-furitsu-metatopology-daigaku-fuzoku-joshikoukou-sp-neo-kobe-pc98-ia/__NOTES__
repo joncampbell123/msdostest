@@ -1,0 +1,1 @@
+- According to DOSBox-X log, one part of the game attempts to EOI interrupts using "rotate mode" causing "rotate mode not supported" log messages
