@@ -1,3 +1,3 @@
 Why the demo failed the test:
-- Does not respond, crashes.
-- Mouse cursor confinement issues.
+- Will eventually crash, if run from HDI image. Runs OK if mounted and run directly in DOSBox-X
+- Strange mouse cursor confinement issues, check behavior on real hardware
