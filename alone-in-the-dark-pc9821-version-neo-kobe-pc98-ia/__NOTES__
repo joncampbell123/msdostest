@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Running the game in the DOS shell displays correctly. Booting the HDI image results in a 200-line 256-color mode, which is wrong. Game does not set 16-color analog mode first before setting 256-color mode (writes port 6Ah directly). Examine real hardware behavior.
