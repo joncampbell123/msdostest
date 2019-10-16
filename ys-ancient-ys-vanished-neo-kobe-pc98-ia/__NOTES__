@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Game appears to use duplicate sectors per track, which is not yet supported in DOSBox-X
