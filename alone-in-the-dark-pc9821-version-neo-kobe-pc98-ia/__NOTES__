@@ -1,2 +1,2 @@
-Why the demo failed the test:
-- Running the game in the DOS shell displays correctly. Booting the HDI image results in a 200-line 256-color mode, which is wrong. Game does not set 16-color analog mode first before setting 256-color mode (writes port 6Ah directly). Examine real hardware behavior.
+- Game boots up and expects to set 256-color mode by enabling EGC then writing 21h to port 6Ah, without first setting 16-color analog mode. Check 16/256-color mode priority on real hardware.
+- Game does not set video mode any other way. If the current graphics mode is 640x200, then theoretically the 256-color mode set will get 640x200 256-color mode. Check real hardware.
