@@ -1,0 +1,4 @@
+Why the demo failed the test:
+- Randomly touches D0000-DFFFFh
+- No graphics appear on screen, invisible graphics
+- Probable INT 18h AH=42h emulation bug [https://github.com/joncampbell123/dosbox-x/issues/1305]
