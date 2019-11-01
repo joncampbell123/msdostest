@@ -1,0 +1,3 @@
+Why the demo failed the test:
+- OAK CD-ROM driver in HDI does not work with DOSBox-X, hangs
+- HDI image cannot be mounted with FAT driver because partition start not a multiple of FAT/disk sector size translation
