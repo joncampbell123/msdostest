@@ -1,4 +1,1 @@
-Why the demo failed the test:
-- Randomly touches D0000-DFFFFh
-- No graphics appear on screen, invisible graphics
-- Probable INT 18h AH=42h emulation bug [https://github.com/joncampbell123/dosbox-x/issues/1305]
+- This game assumes NEC MOUSE.COM behavior where driver init and reset show the graphics layer. Any other driver or no driver at all will result in no graphics. The HDI image loads QMOUSE which does not show graphics. The dosbox.conf uses the --pc98-graphics BOOT option to show graphics layer on startup anyway.
