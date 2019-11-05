@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Prompts for MIDI, hangs when selected (waiting for MPU-401 to return 0xFE). Game works if you answer "No" to the prompt, which it then uses FM music instead.
