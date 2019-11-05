@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Loads CD-ROM driver that is not compatible with DOSBox-X and hangs. Game DOES work if you force MS-DOS to skip loading the CD-ROM driver.
