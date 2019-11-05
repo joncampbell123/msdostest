@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Stuck in loop expecting INT 1Bh to return a specific return code that when masked is 0x310
