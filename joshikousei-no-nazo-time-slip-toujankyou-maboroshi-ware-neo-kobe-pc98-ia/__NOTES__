@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Unknown INT 18h call, game eventually hits a point where it erases graphics leaving a blank screen
