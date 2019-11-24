@@ -117,8 +117,14 @@ if ($archivetype eq "zip") { # .zip, or .ZIP, or whatever
 }
 elsif ($archivetype eq "7z") { # 7-zip
     @args = ("7za");
-    die if $no_subdirs == 1;
-    push(@args,"x","_download_.7z");
+    if ($no_subdirs == 1) {
+        push(@args,"e");
+        push(@args,"-y");
+    }
+    else {
+        push(@args,"x");
+    }
+    push(@args,"_download_.7z");
     $x = system(@args);
     die unless $x == 0;
 }
