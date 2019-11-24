@@ -72,6 +72,9 @@ else {
     elsif ($url =~ m/\.iso$/i) {
         $archivetype = "iso";
     }
+    elsif ($url =~ m/\.7z$/i) {
+        $archivetype = "7z";
+    }
 
     close(URL);
 
@@ -109,6 +112,13 @@ if ($archivetype eq "zip") { # .zip, or .ZIP, or whatever
     @args = ("unzip");
     push(@args,"-j") if $no_subdirs == 1;
     push(@args,"-o","_download_.zip"); # use InfoZip
+    $x = system(@args);
+    die unless $x == 0;
+}
+elsif ($archivetype eq "7z") { # 7-zip
+    @args = ("7za");
+    die if $no_subdirs == 1;
+    push(@args,"x","_download_.7z");
     $x = system(@args);
     die unless $x == 0;
 }
