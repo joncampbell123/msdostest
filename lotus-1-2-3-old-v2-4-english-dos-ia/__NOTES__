@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- 640x480 VGA graphics render as all grey or black, making the UI hard to read
