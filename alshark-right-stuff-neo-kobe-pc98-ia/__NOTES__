@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Odd boot sector code that includes CALL NEAR to some memory location outside the boot sector, which crashes
