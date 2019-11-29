@@ -1,2 +1,1 @@
-Why the demo failed the test:
-- Talks directly to FDC, not compatible with FDC emulation
+- Talks directly to FDC, copy protection relies on out of range sector numbers.
