@@ -1,1 +1,2 @@
+Emulation of this game is IN DISPUTE. It happens to work at this time, however only by possibly breaking FDC emulation!
 - Talks directly to FDC, copy protection relies on out of range sector numbers.

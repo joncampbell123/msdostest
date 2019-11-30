@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Requires the FDC to hold busy state even a little bit after IRQ fires, before it will properly send/recieve commands to/from the FDC. The hackery made for Star Cruiser breaks this. Damned if you do, damned if you don't.
