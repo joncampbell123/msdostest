@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Image includes OAK CD-ROM driver which does not work with DOSBox-X (hangs)
