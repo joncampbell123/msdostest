@@ -1,2 +1,4 @@
 url=https://archive.org/download/soultrap/SOULTRAP.cue
 needs=windows95osr2
+img-install=\run.bat=run.bat
+img-autorun=\run.bat
