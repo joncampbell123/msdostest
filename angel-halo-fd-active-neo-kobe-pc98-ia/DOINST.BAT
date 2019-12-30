@@ -5,6 +5,9 @@ ECHO When prompted, hit "A" and ENTER to direct installation to A:
 ECHO and hit enter to accept directory A:\HALO
 ECHO Use DOSBox-X disk swapping shortcut to switch floppies when prompted.
 ECHO There are 4 disks, you will need to switch 3 times.
+ECHO .
+ECHO Hit ENTER to begin install
+PAUSE
 B:
 INSTALL.EXE
 
