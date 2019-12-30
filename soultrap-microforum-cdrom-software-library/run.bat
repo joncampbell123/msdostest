@@ -7,6 +7,8 @@ echo to install DirectX, decline. DirectX is already installed.
 pause
 d:\setup.exe
 pause
-exit
 :skipinst
+cd c:\progra~1\microf~1\soultrap
+soultrap.exe
+pause
 
