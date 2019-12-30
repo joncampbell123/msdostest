@@ -3,6 +3,7 @@
 use File::Basename;
 
 my $url = undef;
+my $url2 = undef;
 my $no_subdirs = 0;
 my $archivetype = undef;
 my $manual_download_url;
@@ -72,16 +73,34 @@ else {
     elsif ($url =~ m/\.iso$/i) {
         $archivetype = "iso";
     }
+    elsif ($url =~ m/\.cue$/i) {
+        $archivetype = "cue";
+    }
     elsif ($url =~ m/\.7z$/i) {
         $archivetype = "7z";
     }
 
     close(URL);
 
-    my $dnname;
+    my $dnname = undef;
+    my $dnname2 = undef;
 
     if ($archivetype eq "exe") {
         $dnname = "_dnload_.$archivetype";
+    }
+    elsif ($archivetype eq "cue") {
+        die if index($url,'?') >= 0;
+        $i = rindex($url,'/');
+        $dnname = substr($url,$i+1) if $i >= 0;
+        die if $dnname =~ m/^\.\./;
+
+        $url2 = $url;
+        $url2 =~ s/\.cue$/.bin/;
+        $url2 =~ s/\.CUE$/.BIN/;
+
+        $dnname2 = $dnname;
+        $dnname2 =~ s/\.cue$/.bin/;
+        $dnname2 =~ s/\.CUE$/.BIN/;
     }
     else {
         $dnname = "_download_.$archivetype";
@@ -104,6 +123,17 @@ else {
         die unless $x == 0;
 
         rename("$dnname.part",$dnname) || die;
+    }
+
+    if ( -f $dnname2 ) {
+    }
+    else {
+        my @args = ("wget","-O","$dnname2.part","--continue","--",$url2);
+
+        $x = system(@args);
+        die unless $x == 0;
+
+        rename("$dnname2.part",$dnname2) || die;
     }
 }
 
@@ -139,6 +169,8 @@ elsif ($archivetype eq "rar") { # .rar, or .RAR, or whatever
 elsif ($archivetype eq "exe") { # standalone exe, do nothing
 }
 elsif ($archivetype eq "iso") {
+}
+elsif ($archivetype eq "cue") {
 }
 else {
     print "Warning: I do not know how to unpack this archive\n";
