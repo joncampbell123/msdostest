@@ -125,15 +125,17 @@ else {
         rename("$dnname.part",$dnname) || die;
     }
 
-    if ( -f $dnname2 ) {
-    }
-    else {
-        my @args = ("wget","-O","$dnname2.part","--continue","--",$url2);
+    if (defined($dnname2)) {
+        if ( -f $dnname2 ) {
+        }
+        else {
+            my @args = ("wget","-O","$dnname2.part","--continue","--",$url2);
 
-        $x = system(@args);
-        die unless $x == 0;
+            $x = system(@args);
+            die unless $x == 0;
 
-        rename("$dnname2.part",$dnname2) || die;
+            rename("$dnname2.part",$dnname2) || die;
+        }
     }
 }
 
