@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Game is stuck in a loop issuing a read with INT 1Bh until success, which DOSBox-X fails
