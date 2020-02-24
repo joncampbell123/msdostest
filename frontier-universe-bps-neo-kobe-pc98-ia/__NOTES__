@@ -1,2 +1,2 @@
 Why the demo failed the test:
-- If intro BPS logo is allowed to run to completion, it flashes the palette per scanline, and gets stuck. Game is playable if you can interrupt the logo sequence.
+- If intro BPS logo is allowed to run to completion, it flashes the palette per scanline, and gets stuck (end condition is vertical retrace). Game is playable if you can interrupt the logo sequence.
