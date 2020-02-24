@@ -1,2 +1,0 @@
-Why the demo failed the test:
-- Game over delay and other delays poll PIT 1 (PC speaker counter) for time. Since the PC speaker is off, the counter never changes and the game gets "stuck". I have so far confirmed on PC-9821 hardware that the PC speaker gate controls both counter and output, so unlike the IBM PC it is impossible to make PIT 1 counter count without emitting a tone from the PC speaker.
