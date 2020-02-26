@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Requires direct FDC access which DOSBox-X cannot satisfy
