@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Disk is formatted with duplicate sectors on each track in a manner that DOSBox-X cannot currently emulate.
