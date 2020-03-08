@@ -1,0 +1,1 @@
+- Check: According to debug log, game sets PC-98 bus mouse interrupt rate to 15, yet cursor movement is smooth.
