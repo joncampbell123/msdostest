@@ -1,0 +1,1 @@
+- MPU-401 emulation causes game to use MIDI playback, which the game cannot handle properly
