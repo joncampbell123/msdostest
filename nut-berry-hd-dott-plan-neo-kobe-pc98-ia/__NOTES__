@@ -1,0 +1,3 @@
+Why the demo failed the test:
+- Game does not visibly respond to keyboard/mouse input
+- Game stops at title screen, does not show anything, does not visibly respond to input
