@@ -1,0 +1,3 @@
+Why the demo failed the test:
+- Game hangs when executing A.EXE (infinite loop)
+- Not sure if batch files provided are installing the game properly
