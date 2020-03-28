@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Seems to require constant disk swapping, leaves text and artifacts on the screen afterwards
