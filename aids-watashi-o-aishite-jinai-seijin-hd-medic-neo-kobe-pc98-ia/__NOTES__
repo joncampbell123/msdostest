@@ -1,0 +1,3 @@
+Why the demo failed the test:
+- Uses unimplemented GDC commands
+- Title screen is probably not rendering correctly

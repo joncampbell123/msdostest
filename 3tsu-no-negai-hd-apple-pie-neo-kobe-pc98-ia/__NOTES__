@@ -1,0 +1,3 @@
+Why the demo failed the test:
+- Cursor boundary issues
+- Unimplemented GDC commands
