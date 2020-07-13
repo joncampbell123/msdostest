@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Endless loop reading disk. Perhaps DOSBox-X does not properly support the double density format.
