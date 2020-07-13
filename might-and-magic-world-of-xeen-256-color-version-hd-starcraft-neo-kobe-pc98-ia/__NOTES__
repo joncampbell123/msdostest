@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Crashes after introduction, in an endless conditional loop (?)
