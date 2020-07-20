@@ -1,0 +1,5 @@
+url=https://archive.org/download/virtual-stupidity/Beavis%20and%20Butthead%20-%20Virtual%20Stupidity%20%281995%29%28Viacom%20New%20Media%29.iso
+needs=windows95
+img-install=rungame.bat=rungame.bat
+img-autorun=\rungame.bat
+
