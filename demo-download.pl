@@ -70,6 +70,9 @@ else {
     elsif ($url =~ m/\.exe$/i) {
         $archivetype = "exe";
     }
+    elsif ($url =~ m/\.mdf$/i) {
+        $archivetype = "mdf";
+    }
     elsif ($url =~ m/\.iso$/i) {
         $archivetype = "iso";
     }
@@ -171,6 +174,8 @@ elsif ($archivetype eq "rar") { # .rar, or .RAR, or whatever
 elsif ($archivetype eq "exe") { # standalone exe, do nothing
 }
 elsif ($archivetype eq "iso") {
+}
+elsif ($archivetype eq "mdf") {
 }
 elsif ($archivetype eq "cue") {
 }

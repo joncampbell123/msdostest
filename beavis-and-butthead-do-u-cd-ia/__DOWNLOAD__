@@ -1,0 +1,5 @@
+url=https://archive.org/download/beavisdoucd/BUILD_32.mdf
+needs=windows98
+img-install=rungame.bat=rungame.bat
+img-autorun=\rungame.bat
+
