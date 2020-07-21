@@ -1,0 +1,5 @@
+url=https://archive.org/download/virgin_triponthisdisc/Trip-On-This-Disc%20Windows%2095%20CD-ROM%20Sampler%20%28Virgin%20Interactive%20Entertainment%2C%20Inc.%29%281996%29.iso
+needs=windows95
+img-install=rungame.bat=rungame.bat
+img-autorun=\rungame.bat
+
