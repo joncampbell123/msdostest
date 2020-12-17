@@ -1,0 +1,5 @@
+Notes:
+- Game *requires* 286 emulation, or the disk image will just reboot endlessly. Does not like 386 or higher for some reason.
+- Game requires you to toggle the Kana (カナ) key ON before allowing you to enter your name.
+TODO:
+- Game expects Kana input when entering your name. You can bypass this by hitting space repeatedly though, but it does mean DOSBox-X needs to generate Kana input in that case.
