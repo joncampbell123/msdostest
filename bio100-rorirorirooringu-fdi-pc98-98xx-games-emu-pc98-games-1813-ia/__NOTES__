@@ -1,0 +1,3 @@
+- Game does work
+Why the demo failed the test:
+- Disk image name is pure ShiftJIS which is hard to guarantee on host system
