@@ -201,6 +201,7 @@ while ($line = <S>) {
     }
 
     my $pass_dosbox_staging = undef;
+    my $pass_dosbox_staging_url = undef;
     my $pass_dosbox_staging_rev = undef;
     my $pass_dosbox_staging_rev_file = undef;
 

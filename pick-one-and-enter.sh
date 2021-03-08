@@ -53,11 +53,11 @@ elif [[ "$what" == "svn" || "$what" == "svndos" ]]; then
     export gitcommit
 elif [[ "$what" == "staging" ]]; then
     if [ -x /home/jon/src/dosbox-staging/build/dosbox ]; then
-        dosbox_root="/home/jon/src/dosbox-staging"
+        emu="/home/jon/src/dosbox-staging/build/dosbox --debug --showrt --showcycles"
 	gitcommit_sh="/home/jon/src/dosbox-staging/git-commit-version.pl"
     else
-        dosbox_root="/usr/src/dosbox-staging"
-	gitcommit_sh="/home/jon/src/dosbox-staging/git-commit-version.pl"
+        emu="/usr/src/dosbox-staging/build/dosbox --debug --showrt --showcycles"
+	gitcommit_sh="/usr/src/dosbox-staging/git-commit-version.pl"
     fi
 
     if [ -x $gitcommit_sh ]; then
