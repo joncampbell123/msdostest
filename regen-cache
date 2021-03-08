@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in x svn xdos qemu svndos svnbochs; do
+for i in x svn qemu svnbochs staging; do
     ./yet-to-test.pl $i >/dev/null || exit 1
 done
 

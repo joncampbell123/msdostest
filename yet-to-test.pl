@@ -8,17 +8,13 @@ if ($ARGV[0] eq "svn") {
     $suffix=".svn";
     $suffic="_SVN";
 }
-elsif ($ARGV[0] eq "xdos") {
-    $suffix=".xdos";
-    $suffic="_XDOS";
-}
-elsif ($ARGV[0] eq "svndos") {
-    $suffix=".svndos";
-    $suffic="_SVNDOS";
-}
 elsif ($ARGV[0] eq "svnbochs") {
     $suffix=".svnbochs";
     $suffic="_SVNBOCHS";
+}
+elsif ($ARGV[0] eq "staging") {
+    $suffix=".staging";
+    $suffic="_STAGING";
 }
 elsif ($ARGV[0] eq "qemu") {
     $suffix=".qemu";

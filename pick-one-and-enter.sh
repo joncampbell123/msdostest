@@ -6,9 +6,8 @@ filesuffix=
 
 if [[ "$1" == "x" ]]; then what=x; pext=""; filesuffix=""; fi
 if [[ "$1" == "svn" ]]; then what=svn; pext=" svn"; filesuffix="_SVN"; fi
-if [[ "$1" == "xdos" ]]; then what=xdos; pext=" xdos"; filesuffix="_XDOS"; fi
 if [[ "$1" == "qemu" ]]; then what=qemu; pext=" qemu"; filesuffix="_QEMU"; fi
-if [[ "$1" == "svndos" ]]; then what=svndos; pext=" svndos"; filesuffix="_SVNDOS"; fi
+if [[ "$1" == "staging" ]]; then what=staging; pext=" staging"; filesuffix="_STAGING"; fi
 if [[ "$1" == "svnbochs" ]]; then what=svnbochs; pext=" svnbochs"; filesuffix="_SVNBOCHS"; fi
 
 if [[ -z "$what" ]]; then
@@ -52,6 +51,19 @@ elif [[ "$what" == "svn" || "$what" == "svndos" ]]; then
     gitcommit=`cd $x && $gitcommit_sh`
     echo "DOSBox-SVN commit is $gitcommit"
     export gitcommit
+elif [[ "$what" == "staging" ]]; then
+    if [ -x /home/jon/src/dosbox-staging/build/dosbox ]; then
+        dosbox_root="/home/jon/src/dosbox-staging"
+    else
+        dosbox_root="/usr/src/dosbox-staging"
+    fi
+
+    emu="$dosbox_root/build/dosbox --debug"
+    emucap="$emu"
+    gitcommit_sh="`pwd`/dosbox-svn-git-commit-version.pl $dosbox_root"
+    gitcommit=`cd $x && $gitcommit_sh`
+    echo "DOSBox-Staging commit is $gitcommit"
+    export gitcommit
 else
     if [ -x /home/jon/src/dosbox-x/src/dosbox-x ]; then
         emu="/home/jon/src/dosbox-x/src/dosbox-x --debug --showrt --showcycles"
@@ -68,14 +80,6 @@ else
         echo "DOSBox-X commit is $gitcommit"
         export gitcommit
     fi
-fi
-
-if [[ "$what" == "xdos" ]]; then
-    emu+=" --conf dosbox-xdos.conf"
-fi
-
-if [[ "$what" == "svndos" ]]; then
-    emu+=" -conf dosbox-xdos.conf"
 fi
 
 if [[ "$what" == "svnbochs" ]]; then
@@ -193,12 +197,6 @@ if [[ "$what" == "qemu" ]]; then
     cp -vn qemu.conf-example "$x/qemu.conf" || exit 1
 elif [[ "$what" == "svnbochs" ]]; then
     cp -vn bochsrc-example "$x/bochsrc" || exit 1
-elif [[ "$what" == "xdos" || "$what" == "svndos" ]]; then
-    cp -vn dosbox-template.conf "$x/dosbox.conf" || exit 1
-    if [[ !( -f "$x/dosbox-xdos.conf" ) ]]; then
-        cat "$x/dosbox.conf" dosbox-xdos.example.conf >>"$x/dosbox-xdos.conf" || exit 1
-    fi
-    cp -vn xdos-__build_hdd__.example.sh "$x/__build_hdd__.sh" || exit 1
 else
     cp -vn dosbox-template.conf "$x/dosbox.conf" || exit 1
 fi
