@@ -26,8 +26,6 @@ print H "<br>\n";
 
 print H "DOSBox-X refers to the <a target=\"_blank\" href=\"http://dosbox-x.com/\">DOSBox-X project</a><br>\n";
 print H "DOSBox-SVN refers to the <a target=\"_blank\" href=\"https://www.dosbox.com/\">DOSBox project</a><br>\n";
-print H "DOSBox-X-DOS refers to the <a target=\"_blank\" href=\"http://dosbox-x.com/\">DOSBox-X project</a> booting an MS-DOS system.<br>\n";
-print H "DOSBox-SVN-DOS refers to the <a target=\"_blank\" href=\"https://www.dosbox.com/\">DOSBox project</a> booting an MS-DOS system.<br>\n";
 print H "Bochs-SVN refers to the <a target=\"_blank\" href=\"https://sourceforge.net/projects/bochs/\">Bochs project</a> booting an MS-DOS system disk.<br>\n";
 print H "QEMU refers to the <a target=\"_blank\" href=\"https://www.qemu.org/\">QEMU project</a> booting an MS-DOS system disk.<br>\n";
 print H "<br>\n";
@@ -37,8 +35,6 @@ print H "<thead class=\"testing_header\">\n";
 print H "<tr>\n";
 print H "<td style=\"min-width: 6em; text-align: center;\">DOSBox-X</td>";
 print H "<td style=\"min-width: 6em; text-align: center;\">DOSBox-SVN</td>";
-print H "<td style=\"min-width: 6em; text-align: center;\">DOSBox-X-DOS</td>";
-print H "<td style=\"min-width: 8em; text-align: center;\">DOSBox-SVN-DOS</td>";
 print H "<td style=\"min-width: 6em; text-align: center;\">Bochs-SVN</td>";
 print H "<td style=\"min-width: 4em; text-align: center;\">QEMU</td>";
 print H "<td>Demo</td>";
@@ -58,13 +54,11 @@ my $tot_pc98 = 0;
 my $tot_svn_noncompat = 0;
 my $tot_x = 0,$pass_x = 0;
 my $tot_svn = 0,$pass_svn = 0;
-my $tot_xdos = 0,$pass_xdos = 0;
-my $tot_svndos = 0,$pass_svndos = 0;
 my $tot_bochs = 0,$pass_bochs = 0;
 my $tot_qemu = 0,$pass_qemu = 0;
 
 $count = 0;
-$list = "pick-one.cache  pick-one.qemu.cache  pick-one.svnbochs.cache  pick-one.svn.cache  pick-one.svndos.cache  pick-one.xdos.cache";
+$list = "pick-one.cache  pick-one.qemu.cache  pick-one.svnbochs.cache  pick-one.svn.cache";
 #open(S,"find -type d | sort |") || die;
 open(S,"(find -type d; find -type l; cat $list) | sort | uniq |") || die;
 while ($line = <S>) {
@@ -217,133 +211,6 @@ while ($line = <S>) {
 
     # stop going into subdirs
     next if -f "$line/__IGNORE__";
-
-    my $pass_dosbox_xdos = undef;
-    my $pass_dosbox_xdos_rev = undef;
-    my $pass_dosbox_xdos_url = undef;
-    my $pass_dosbox_xdos_rev_file = undef;
-
-    die unless !defined($pass_dosbox_xdos);
-    die unless !defined($pass_dosbox_xdos_url);
-    die unless !defined($pass_dosbox_xdos_rev);
-    die unless !defined($pass_dosbox_xdos_rev_file);
-
-    # perhaps in the future the file could explain what content is in there.
-    # until then, it's a helpful warning that the game (especially if PC-98)
-    # has some pornographic content.
-    $porn = 0;
-    if ( -f "$line/__PORN__" ) {
-        $porn = 1;
-    }
-
-    if ( -f "$line/__PASS_XDOS__" ) {
-        $tot_xdos++;
-        $pass_xdos++;
-        $pass_dosbox_xdos = "PASS";
-        $pass_dosbox_xdos_rev_file = "$line/__PASS_XDOS__";
-    }
-    if ( -f "$line/__FAIL_XDOS__" ) {
-        $tot_xdos++;
-        $pass_dosbox_xdos = "FAIL";
-        $pass_dosbox_xdos_rev_file = "$line/__FAIL_XDOS__";
-    }
-    if ( -f "$line/__WINDOWS_XDOS__" ) {
-        $pass_dosbox_xdos = "WINDOWS";
-        $pass_dosbox_xdos_rev_file = "$line/__WINDOWS_XDOS__";
-    }
-    if (defined($pass_dosbox_xdos_rev_file) && -f $pass_dosbox_xdos_rev_file ) {
-        open(R,"<",$pass_dosbox_xdos_rev_file) || die;
-        # 20180208-004727-cf142387b7108d61666c99f9b8bd7bee5f054284-develop
-        # yyyymmdd-hhmmss-commit-----------------------------------branch
-        $pass_dosbox_xdos_rev = <R>;
-        chomp $pass_dosbox_xdos_rev;
-        close(R);
-
-        my $x = $pass_dosbox_xdos_rev;
-        if ($x =~ s/^\d+-\d+-//) {
-            $x =~ s/\-.*$//g;
-            $pass_dosbox_xdos_url = "https://github.com/joncampbell123/dosbox-x/commit/".$x;
-        }
-    }
-
-    my $notes_dosbox_xdos = undef;
-    if ( -f "$line/__NOTES_XDOS__" ) {
-        my $nline="",$pline,$res="",$ncount=0;
-
-        open(X,"<","$line/__NOTES_XDOS__") || die;
-        while ($nline = <X>) {
-            $pline = $nline;
-            chomp $nline;
-            $nline =~ s/^[ \t]+//;
-            $nline =~ s/[ \t]+$//;
-            next if $nline eq "";
-            $res .= "\n" if $ncount > 0;
-            $res .= "$nline";
-            $ncount++;
-        }
-        close(X);
-        $notes_dosbox_xdos = $res;
-    }
-
-    my $pass_dosbox_svndos = undef;
-    my $pass_dosbox_svndos_rev = undef;
-    my $pass_dosbox_svndos_url = undef;
-    my $pass_dosbox_svndos_rev_file = undef;
-
-    die unless !defined($pass_dosbox_svndos);
-    die unless !defined($pass_dosbox_svndos_url);
-    die unless !defined($pass_dosbox_svndos_rev);
-    die unless !defined($pass_dosbox_svndos_rev_file);
-
-    if ( -f "$line/__PASS_SVNDOS__" ) {
-        $tot_svndos++;
-        $pass_svndos++;
-        $pass_dosbox_svndos = "PASS";
-        $pass_dosbox_svndos_rev_file = "$line/__PASS_SVNDOS__";
-    }
-    if ( -f "$line/__FAIL_SVNDOS__" ) {
-        $tot_svndos++;
-        $pass_dosbox_svndos = "FAIL";
-        $pass_dosbox_svndos_rev_file = "$line/__FAIL_SVNDOS__";
-    }
-    if ( -f "$line/__WINDOWS_SVNDOS__" ) {
-        $pass_dosbox_svndos = "WINDOWS";
-        $pass_dosbox_svndos_rev_file = "$line/__WINDOWS_SVNDOS__";
-    }
-    if (defined($pass_dosbox_svndos_rev_file) && -f $pass_dosbox_svndos_rev_file ) {
-        open(R,"<",$pass_dosbox_svndos_rev_file) || die;
-        $pass_dosbox_svndos_rev = <R>;
-        chomp $pass_dosbox_svndos_rev;
-        close(R);
-
-        my $x = $pass_dosbox_svndos_rev;
-        $x =~ s/^git=[^ ]+ +//;
-        if ($x =~ s/^svn=r//) {
-            if ($x =~ m/^\d+ /) {
-                $x =~ s/ .*$//g;
-                $pass_dosbox_svndos_url = "https://sourceforge.net/p/dosbox/code-0/".$x."/";
-            }
-        }
-    }
-
-    my $notes_dosbox_svndos = undef;
-    if ( -f "$line/__NOTES_SVNDOS__" ) {
-        my $nline="",$pline,$res="",$ncount=0;
-
-        open(X,"<","$line/__NOTES_SVNDOS__") || die;
-        while ($nline = <X>) {
-            $pline = $nline;
-            chomp $nline;
-            $nline =~ s/^[ \t]+//;
-            $nline =~ s/[ \t]+$//;
-            next if $nline eq "";
-            $res .= "\n" if $ncount > 0;
-            $res .= "$nline";
-            $ncount++;
-        }
-        close(X);
-        $notes_dosbox_svndos = $res;
-    }
 
     my $pass_dosbox_svnbochs = undef;
     my $pass_dosbox_svnbochs_rev = undef;
@@ -540,8 +407,6 @@ while ($line = <S>) {
         print H "<tr>\n";
         print H "<td style=\"min-width: 6em; text-align: center;\">DOSBox-X</td>";
         print H "<td style=\"min-width: 6em; text-align: center;\">DOSBox-SVN</td>";
-        print H "<td style=\"min-width: 6em; text-align: center;\">DOSBox-X-DOS</td>";
-        print H "<td style=\"min-width: 8em; text-align: center;\">DOSBox-SVN-DOS</td>";
         print H "<td style=\"min-width: 6em; text-align: center;\">Bochs-SVN</td>";
         print H "<td style=\"min-width: 4em; text-align: center;\">QEMU</td>";
         print H "<td>Demo</td>";
@@ -571,33 +436,6 @@ while ($line = <S>) {
         }
         else {
             print H "<td class=\"passfail_$pass_dosbox_svn\">$pass_dosbox_svn</td>";
-        }
-    }
-    elsif ($pc98) { # SVN cannot run PC-98 games
-        print H "<td class=\"passfail_NA\">N/A</td>";
-    }
-    else {
-        print H "<td class=\"passfail_NA\">---</td>";
-    }
-
-    if (defined($pass_dosbox_xdos)) {
-        if (defined($pass_dosbox_xdos_url) && $pass_dosbox_xdos_url ne "") {
-            print H "<td class=\"passfail_$pass_dosbox_xdos\"><a target=\"_blank\" href=\"$pass_dosbox_xdos_url\">$pass_dosbox_xdos</a></td>";
-        }
-        else {
-            print H "<td class=\"passfail_$pass_dosbox_xdos\">$pass_dosbox_xdos</td>";
-        }
-    }
-    else {
-        print H "<td class=\"passfail_NA\">---</td>";
-    }
-
-    if (defined($pass_dosbox_svndos)) {
-        if (defined($pass_dosbox_svndos_url) && $pass_dosbox_svndos_url ne "") {
-            print H "<td class=\"passfail_$pass_dosbox_svndos\"><a target=\"_blank\" href=\"$pass_dosbox_svndos_url\">$pass_dosbox_svndos</a></td>";
-        }
-        else {
-            print H "<td class=\"passfail_$pass_dosbox_svndos\">$pass_dosbox_svndos</td>";
         }
     }
     elsif ($pc98) { # SVN cannot run PC-98 games
@@ -674,28 +512,6 @@ while ($line = <S>) {
         }
     }
 
-    if ($comb ne "NO" && defined($notes_dosbox_xdos) && $notes_dosbox_xdos ne "") {
-        if ($comb eq "" || $combnotes eq $notes_dosbox_xdos) {
-            $comb .= " &amp; " if $comb ne "";
-            $comb .= "DOSBox-X-DOS";
-            $combnotes = $notes_dosbox_xdos;
-        }
-        else {
-            $comb = "NO";
-        }
-    }
-
-    if ($comb ne "NO" && defined($notes_dosbox_svndos) && $notes_dosbox_svndos ne "") {
-        if ($comb eq "" || $combnotes eq $notes_dosbox_svndos) {
-            $comb .= " &amp; " if $comb ne "";
-            $comb .= "DOSBox-SVN-DOS";
-            $combnotes = $notes_dosbox_svndos;
-        }
-        else {
-            $comb = "NO";
-        }
-    }
-
     if ($comb ne "NO" && defined($notes_dosbox_svnbochs) && $notes_dosbox_svnbochs ne "") {
         if ($comb eq "" || $combnotes eq $notes_dosbox_svnbochs) {
             $comb .= " &amp; " if $comb ne "";
@@ -727,16 +543,6 @@ while ($line = <S>) {
         if (defined($notes_dosbox_svn) && $notes_dosbox_svn ne "") {
             $more .= "<br>";
             $more .= "DOSBox-SVN NOTES: <pre>$notes_dosbox_svn</pre>";
-        }
-
-        if (defined($notes_dosbox_xdos) && $notes_dosbox_xdos ne "") {
-            $more .= "<br>";
-            $more .= "DOSBox-X-DOS NOTES: <pre>$notes_dosbox_xdos</pre>";
-        }
-
-        if (defined($notes_dosbox_svndos) && $notes_dosbox_svndos ne "") {
-            $more .= "<br>";
-            $more .= "DOSBox-SVN-DOS NOTES: <pre>$notes_dosbox_svndos</pre>";
         }
 
         if (defined($notes_dosbox_svnbochs) && $notes_dosbox_svnbochs ne "") {
@@ -842,8 +648,6 @@ $tot_svndos -= $tot_svn_noncompat;
 print H "<tr>\n";
 print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount,                             $tot_x,$pass_x)."</td>";
 print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount-$tot_pc98-$tot_svn_noncompat,$tot_svn,$pass_svn)."</td>";
-print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount,                             $tot_xdos,$pass_xdos)."</td>";
-print H "<td style=\"min-width: 8em; text-align: center;\">".makestat($totalcount-$tot_pc98-$tot_svn_noncompat,$tot_svndos,$pass_svndos)."</td>";
 print H "<td style=\"min-width: 6em; text-align: center;\">".makestat($totalcount-$tot_pc98,                   $tot_bochs,$pass_bochs)."</td>";
 print H "<td style=\"min-width: 4em; text-align: center;\">".makestat($totalcount-$tot_pc98,                   $tot_qemu,$pass_qemu)."</td>";
 print H "<td>TEST RESULTS</td>";
