@@ -59,6 +59,9 @@ while (my $path = <X>) {
         ( -f ("$path/__FAIL$suffic"."__") && ( -s ("$path/__FAIL$suffic"."__")) > 4)
     );
 
+    # skip if ignore
+    next if ( -f ("$path/__IGNORE__") );
+
     # skip it if it's Windows only
     next if (
         ( -f ("$path/__WINDOWS$suffic"."__") && ( -s ("$path/__WINDOWS$suffic"."__")) > 4)
