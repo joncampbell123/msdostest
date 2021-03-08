@@ -54,16 +54,18 @@ elif [[ "$what" == "svn" || "$what" == "svndos" ]]; then
 elif [[ "$what" == "staging" ]]; then
     if [ -x /home/jon/src/dosbox-staging/build/dosbox ]; then
         dosbox_root="/home/jon/src/dosbox-staging"
+	gitcommit_sh="/home/jon/src/dosbox-staging/git-commit-version.pl"
     else
         dosbox_root="/usr/src/dosbox-staging"
+	gitcommit_sh="/home/jon/src/dosbox-staging/git-commit-version.pl"
     fi
 
-    emu="$dosbox_root/build/dosbox --debug"
-    emucap="$emu"
-    gitcommit_sh="`pwd`/dosbox-svn-git-commit-version.pl $dosbox_root"
-    gitcommit=`cd $x && $gitcommit_sh`
-    echo "DOSBox-Staging commit is $gitcommit"
-    export gitcommit
+    if [ -x $gitcommit_sh ]; then
+        x=`dirname $gitcommit_sh`
+        gitcommit=`cd $x && $gitcommit_sh`
+        echo "DOSBox-Staging commit is $gitcommit"
+        export gitcommit
+    fi
 else
     if [ -x /home/jon/src/dosbox-x/src/dosbox-x ]; then
         emu="/home/jon/src/dosbox-x/src/dosbox-x --debug --showrt --showcycles"
