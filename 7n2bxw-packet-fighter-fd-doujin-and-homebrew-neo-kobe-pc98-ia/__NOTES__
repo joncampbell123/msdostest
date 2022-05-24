@@ -1,2 +1,3 @@
 Why the demo failed the test:
 - Uses LIO BIOS calls, will not display properly otherwise
+- Hangs on startup

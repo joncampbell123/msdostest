@@ -1,3 +1,0 @@
-Why the demo failed the test:
-- Uses LIO BIOS calls
-- HDI does not boot, MS-DOS cannot find MSDOS.SYS despite the fact it's clearly there
