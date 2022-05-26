@@ -1,3 +1,0 @@
-Why the demo failed the test:
-- Uses LIO BIOS calls not yet implemented
-- Does not show anything on screen
