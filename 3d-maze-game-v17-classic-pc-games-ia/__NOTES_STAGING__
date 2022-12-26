@@ -1,0 +1,2 @@
+Why the demo failed the test:
+- Staging requires providing the geometry, does not autodetect
