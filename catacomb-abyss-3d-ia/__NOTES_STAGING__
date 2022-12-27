@@ -1,0 +1,1 @@
+- Graphics will flicker if cycle count is higher than 30000, which means Staging does not emulate video memory delay as DOSBox-X does. Not a failure.
