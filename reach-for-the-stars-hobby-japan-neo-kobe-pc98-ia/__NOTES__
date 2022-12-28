@@ -1,2 +1,2 @@
 Why the demo failed the test:
-- Game uses LIO BIOS functions, does not render everything
+- FM synth is stuck during game (what is that awful buzzing sound?)

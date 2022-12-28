@@ -1,3 +1,0 @@
-Why the demo failed the test:
-- It's unlikely the game would actually leave the background bright pink
-- Uses LIO BIOS calls

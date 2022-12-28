@@ -1,3 +1,0 @@
-Why the demo failed the test:
-- Uses LIO graphics BIOS functions
-- Introductory sequence is mis-displayed as 640x200 16-color mode
