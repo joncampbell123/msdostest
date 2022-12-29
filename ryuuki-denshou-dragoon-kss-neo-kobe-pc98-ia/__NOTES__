@@ -1,2 +1,0 @@
-Why the demo failed the test:
-- Controls are very bad because of what appears to be a problem with interrupts. Keyboard input is intermittent. Cursor movement is very intermittent.

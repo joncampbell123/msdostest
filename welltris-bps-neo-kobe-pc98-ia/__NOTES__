@@ -1,2 +1,0 @@
-Why the demo failed the test:
-- Relies on LIO BIOS calls to draw/update the screen, everything is invisible

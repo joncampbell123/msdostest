@@ -1,2 +1,2 @@
 Why the demo failed the test:
-- Transparency BitBlt problems with the lady who reveals the letters on the board
+- Transparency BitBlt problems with lady at bottom when she is facing to the right (not to the left). BitBlt bugs when bitmap is reversed?

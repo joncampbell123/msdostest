@@ -1,3 +1,2 @@
-Why the demo failed the test:
-- Initial menu is not shown due to reliance on LIO BIOS calls
-- Cannot pass first screen
+FIXME:
+- Game works, but there is some sort of initial screen or menu that fails to display at all. Why?

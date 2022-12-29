@@ -1,2 +1,0 @@
-Why the demo failed the test:
-- Uses color key transparency which is not supported in this configuration
