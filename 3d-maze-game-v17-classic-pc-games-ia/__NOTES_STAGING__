@@ -1,2 +1,2 @@
-Why the demo failed the test:
-- Staging requires providing the geometry, does not autodetect
+FIXME:
+- DOSBox Staging VGA planar emulation seems to cause garbage data to appear underneath the mouse cursor as it moves. The game works however.

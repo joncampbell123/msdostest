@@ -1,3 +1,1 @@
-Why the demo failed the test:
-- DOSBox SVN does not support Windows 95 OSR2
-- DOSBox SVN does not appear to auto detect geometry
+WARNING: DOSBox SVN does not run Windows 95 very well, however it happens to work, generally
